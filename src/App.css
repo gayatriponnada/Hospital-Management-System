@@ -2,4 +2,9 @@
 @theme {
     --color-primary: #5f6fff;
     --border-primary: #c6c7c6;
+    
+}
+
+@utility h-full-screen{
+    height: 100%;
 }

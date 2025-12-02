@@ -1,26 +1,23 @@
-import React, { useEffect } from "react";
-import { assets } from "../../assets/assets";
+
 import { doctors } from "../../assets/assets";
 
 
 const DoctorsList = () => {
-  useEffect(() => {
-    console.log(assets.doc1);
-  }, []);
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 items-center">
       <div className="text-2xl  font-medium ">Top Doctors to Book</div>
       <div className="text-sm font-normal">
         Simply browse through our extensive list of trusted
       </div>
-      <div className=" flex flex-wrap w-3xl gap-4   ">
+      <div className=" flex flex-wrap items-center justify-center w-5xl gap-4   ">
         {doctors.map((doctor, index) => (
           <div
             key={index}
-            className="flex flex-col gap-1  items-start  w-1/4 border-blue-200  border rounded-2xl cursor-pointer transition-transform  ease-in-out hover:-translate-y-2"
+            className="flex flex-col gap-1  items-start w-1/5 border-blue-200  border rounded-2xl cursor-pointer transition-transform  ease-in-out hover:-translate-y-2"
           >
             <img
-              className="w-48 h-48 bg-blue-200 rounded-tr-2xl rounded-tl-2xl"
+              className="w-52 h-52 bg-blue-200 rounded-tr-2xl rounded-tl-2xl"
               src={doctor?.image}
               alt={doctor?.name}
             />
@@ -31,6 +28,11 @@ const DoctorsList = () => {
           </div>
         ))}
       </div>
+      <div>
+				<button className="p-3 px-8 text-center text-sm rounded-3xl border border-border-primary text-primary cursor-pointer hover:bg-primary hover:text-white transition-colors ease-in-out">
+          View All Doctors
+        </button>
+			</div>
     </div>
   );
 };

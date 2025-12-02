@@ -17,7 +17,7 @@ const categories = [
 
 const Speciality = () => {
 	return (
-    <div className='flex flex-col gap-5' >
+    <div className='flex flex-col  items-center gap-5' >
       <div className="text-2xl  font-medium ">Find by Speciality</div>
       <div>
         <div className='text-sm'>Simply browse through our extensive list of trusted</div>
