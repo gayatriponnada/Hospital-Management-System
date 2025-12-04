@@ -1,12 +1,12 @@
 import React from "react";
 import { assets } from "../../assets/assets";
 import { NavLink, useNavigate } from "react-router-dom";
-import Login from "../login/Login";
+import Login from "../login/Signup";
 
 const Navbar = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex  justify-between  items-center  p-2 border-b border-gray-200 top-0 sticky z-1 bg-white">
+    <div className="flex  justify-between  items-center  p-2 px-5 border-b border-gray-200 top-0 sticky z-1 bg-white">
       <img className="w-42" src={assets.logo} alt="Logo" />
       <ul className="flex  justify-between items-center p-2 gap-5">
         <li className="text-sm font-semibold ">
@@ -53,7 +53,7 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
-      <div onClick={() => navigate("/login")}>
+      <div onClick={() => navigate("/signup")}>
         <button className="p-3 px-8 text-center text-sm rounded-3xl bg-primary text-white cursor-pointer">
           Create account
         </button>

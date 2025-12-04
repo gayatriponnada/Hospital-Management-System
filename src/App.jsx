@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/nav-bar/Navbar";
 import Home from "./pages/Home";
 import "./index.css";
+import Signup from "./components/login/Signup";
 import Login from "./components/login/Login";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
         {/* <Route path="/all-doctors" element={<AllDoctors />} />
