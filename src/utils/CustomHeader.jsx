@@ -3,7 +3,7 @@ import { assets } from "../assets/assets";
 
 const CustomHeader = ({ line1, line2, line3, text }) => {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex ">
       <div className="flex  items-center justify-center  w-[60vw]  h-[70vh]  bg-primary p-4 rounded-3xl">
         <div className="flex flex-col gap-2 ">
           <div className=" text-4xl font-bold text-white">{line1}</div>

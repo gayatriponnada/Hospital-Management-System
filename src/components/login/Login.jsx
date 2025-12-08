@@ -32,7 +32,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[89vh] ">
+    <div className="flex items-center justify-center h-[84vh] ">
       <div className="flex flex-col gap-5 w-[28vw]  h-[70vh] rounded-xl border border-(--border-primary) p-4 shadow-xl">
         <div className="text-2xl text-gray-600 font-medium">Login</div>
         <div className="text-sm text-gray-600">

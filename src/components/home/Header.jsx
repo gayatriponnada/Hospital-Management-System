@@ -5,7 +5,7 @@ import arrow_icon from "../../assets/arrow_icon.svg";
 const Header = () => {
 	return (
     <div className='flex justify-center items-center'>
-      <div className="  flex items-center justify-center  w-[60vw]  h-[70vh]  bg-primary p-4 rounded-3xl">
+      <div className="  flex items-center justify-center w-[80vw] h-[70vh]  bg-primary p-4 rounded-3xl">
         <div className="flex flex-col gap-2 ">
           <div className=" text-4xl font-bold text-white">Book Appointment</div>
           <div className=" text-4xl font-bold text-white">With Trusted</div>
@@ -31,7 +31,7 @@ const Header = () => {
           <img className="w-80 h-78" src={assets.header_img} alt="header" />
         </div>
       </div>
-    </div>
+     </div>
   );
 }
 

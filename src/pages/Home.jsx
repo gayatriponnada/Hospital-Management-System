@@ -7,7 +7,7 @@ import CustomHeader from "../utils/CustomHeader";
 
 const Home = () => {
   return (
-    <div className="flex flex-col gap-4 mx-24 my-8">
+    <div className="flex flex-col items-center justify-center gap-4 ">
       <Header />
       <Speciality />
       <DoctorsList />
