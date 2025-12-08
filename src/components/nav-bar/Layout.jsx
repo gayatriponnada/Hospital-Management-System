@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <div>
       <Navbar />
-      <main className="flex justify-center p-4 ">
+      <main className=" p-4 ">
         <Outlet />
       </main>
       <footer>{/* Footer content */}</footer>
