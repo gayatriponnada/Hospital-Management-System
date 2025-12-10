@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import about from "../../assets/about_image.png";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [details, setDetails] = useState({
@@ -6,7 +8,8 @@ const Login = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
-	
+  const navigate = useNavigate();
+
   const validate = () => {
     const newError = {};
 
@@ -23,17 +26,26 @@ const Login = () => {
     }
 
     setErrors(newError);
+    return Object.keys(newError).length === 0; 
   };
 
   const handleLogin = () => {
-    if (!validate()) return;
-
-    console.log("Form submitted", details);
+    if (validate()) {
+      navigate("/");
+      return;
+    }
   };
 
   return (
-    <div className="flex items-center justify-center h-[84vh] ">
-      <div className="flex flex-col gap-5 w-[28vw]  h-[70vh] rounded-xl border border-(--border-primary) p-4 shadow-xl">
+    <div
+      className="flex items-center justify-center  w-screen h-screen bg-cover  "
+      style={{
+        backgroundImage: `url(${about})`,
+        backgroundPosition: "center 20%",
+      }}
+    >
+      <div className="absolute inset-0 backdrop-blur-sm bg-white/8"></div>
+      <div className="flex flex-col gap-5 w-[28vw]  h-[70vh] rounded-xl border border-(--border-primary) p-4 shadow-xl relative z-10 ">
         <div className="text-2xl text-gray-600 font-medium">Login</div>
         <div className="text-sm text-gray-600">
           Please log in to book appointment
@@ -70,14 +82,14 @@ const Login = () => {
             </p>
           )}
         </div>
-        <div className=" flex bg-primary justify-center items-center rounded-xl p-2 cursor-pointer">
+        <div className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer">
           <button className="text-white cursor-pointer" onClick={handleLogin}>
             Login
           </button>
         </div>
         <div className="flex gap-2">
-          <div className="text-sm text-gray-600">Create an new account?</div>
-          <a className="text-primary text-sm" href="/signup">
+          <div className="text-sm text-gray-400">Create an new account?</div>
+          <a className="text-gray-700 text-sm underline" href="/signup">
             Click here
           </a>
         </div>

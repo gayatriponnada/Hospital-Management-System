@@ -11,12 +11,6 @@ const Home = () => {
       <Header />
       <Speciality />
       <DoctorsList />
-      <CustomHeader
-        line1="Book Appointment"
-        line2="With 100+ Trusted"
-        line3="Doctors"
-        text="Create Account"
-      />
     </div>
   );
 };
