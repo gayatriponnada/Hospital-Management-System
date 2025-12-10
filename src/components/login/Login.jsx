@@ -6,9 +6,16 @@ const Login = () => {
   const [details, setDetails] = useState({
     email: "",
     password: "",
+    role: "",
   });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  const users = [
+    { role: "patient", displayName: "Patient" },
+    { role: "doctor", displayName: "Doctor" },
+    { role: "admin", displayName: "Admin" },
+  ];
 
   const validate = () => {
     const newError = {};
@@ -26,12 +33,21 @@ const Login = () => {
     }
 
     setErrors(newError);
-    return Object.keys(newError).length === 0; 
+    return Object.keys(newError).length === 0;
   };
 
   const handleLogin = () => {
     if (validate()) {
-      navigate("/");
+      if (details.role === "admin") {
+        navigate("/admin/dashboard");
+        return;
+      } else if (details.role === "doctor") {
+        navigate("/doctor/dashboard");
+        return;
+      } else if (details.role === "patient") {
+        navigate("/");
+        return;
+      }
       return;
     }
   };
@@ -51,7 +67,7 @@ const Login = () => {
           Please log in to book appointment
         </div>
         <div>
-          <div className="text-sm text-gray-600">Email</div>
+          <label className="text-sm text-gray-600">Email</label>
           <input
             className="w-full p-2 border-(--border-primary) border rounded"
             value={details?.email}
@@ -66,7 +82,7 @@ const Login = () => {
           )}
         </div>
         <div>
-          <div className="text-sm text-gray-600">Password</div>
+          <label className="text-sm text-gray-600">Password</label>
           <input
             className="w-full p-2 border-(--border-primary) border rounded"
             value={details?.password}
@@ -80,6 +96,29 @@ const Login = () => {
             <p className="text-red-400 text-xs font-normal">
               {errors.password}
             </p>
+          )}
+        </div>
+        <div className="w-full">
+          <label className="text-sm text-gray-600">Select Role</label>
+          <select
+            className="w-full p-2 border-(--border-primary) border rounded"
+            value={details?.role}
+            onChange={(e) => {
+              setDetails({ ...details, role: e.target.value });
+            }}
+          >
+            <option value="" disabled>
+              Select your role
+            </option>
+
+            {users.map((user) => (
+              <option key={user.role} value={user.role}>
+                {user.displayName}
+              </option>
+            ))}
+          </select>
+          {errors.role && (
+            <p className="text-red-400 text-xs font-normal">{errors.role}</p>
           )}
         </div>
         <div className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer">

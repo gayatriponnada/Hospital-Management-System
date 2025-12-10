@@ -52,14 +52,21 @@ const Signup = () => {
      return Object.keys(newError).length === 0; 
   };
 
-  const handleLogin = () => {
-    if (validate()) {
+const handleLogin = () => {
+  if (validate()) {
+    if (details.role === "admin") {
+      navigate("/admin/dashboard");
+      return;
+    } else if (details.role === "doctor") {
+      navigate("/doctor/dashboard");
+      return;
+    } else if (details.role === "patient") {
       navigate("/");
       return;
     }
-
-    console.log("Form submitted", details);
-  };
+    return;
+  }
+};
 
   return (
     <div
