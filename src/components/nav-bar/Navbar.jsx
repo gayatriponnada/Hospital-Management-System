@@ -27,7 +27,7 @@ const Navbar = () => {
 
         <li className="text-sm font-semibold">
           <NavLink
-            to="/all-doctors"
+            to="/patient/dashboard/all-doctors"
             className={({ isActive }) =>
               isActive ? "border-b-2 border-primary" : ""
             }
@@ -38,7 +38,7 @@ const Navbar = () => {
 
         <li className="text-sm font-semibold">
           <NavLink
-            to="/about"
+            to="/patient/dashboard/about"
             className={({ isActive }) =>
               isActive ? "border-b-2 border-primary" : ""
             }

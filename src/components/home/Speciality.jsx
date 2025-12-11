@@ -1,4 +1,5 @@
-import React from 'react'
+import React from "react";
+// import { useRef } from 'react';
 import General_physician from "../../assets/General_physician.svg";
 import Gynecologist from "../../assets/Gynecologist.svg";
 import Neurologist from "../../assets/Neurologist.svg";
@@ -15,10 +16,10 @@ const categories = [
   { img: Dermatologist, label: "Dermatologist" },
 ];
 
-const Speciality = () => {
-	return (
-    <div className="flex flex-col gap-4 ">
-      <div className='flex flex-col gap-4 justify-center items-center'>
+const Speciality = ({ specialtiesSection }) => {
+  return (
+    <div className="flex flex-col gap-4 " ref={specialtiesSection}>
+      <div className="flex flex-col gap-4 justify-center items-center">
         <div className="text-2xl  font-medium ">Find by Speciality</div>
         <div>
           <div className="text-sm">
@@ -43,6 +44,6 @@ const Speciality = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Speciality
+export default Speciality;
