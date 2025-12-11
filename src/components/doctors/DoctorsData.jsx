@@ -1,11 +1,17 @@
 import React from "react";
 import { doctors } from "../../assets/assets";
 
-const DoctorsData = () => {
+const DoctorsData = ({ id }) => {
+  const speciality = id;
+  const filteredDoctors = doctors.filter(
+    (doctor) => doctor.speciality === speciality
+  );
+
+
   return (
-    <div>
+    <div className="w-[90%]">
       <div className=" flex flex-wrap  items-center justify-start gap-4   ">
-        {doctors.map((doctor, index) => (
+        {(speciality ? filteredDoctors : doctors).map((doctor, index) => (
           <div
             key={index}
             className="flex flex-col gap-1  items-start w-1/4 border-blue-200  border rounded-2xl cursor-pointer transition-transform  ease-in-out hover:-translate-y-2"

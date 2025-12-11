@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import Header from "../components/home/Header";
 import Speciality from "../components/home/Speciality";
@@ -6,16 +6,20 @@ import DoctorsList from "../components/home/DoctorsList";
 import CustomHeader from "../utils/CustomHeader";
 
 const Home = () => {
-
   const specialtiesSection = useRef(null);
 
-const scrollToSpecialties = () => {
-  const yOffset = -90;
-  const element = specialtiesSection.current;
-  const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+  const scrollToSpecialties = () => {
+    const yOffset = -90;
+    const element = specialtiesSection.current;
+    const y =
+      element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
-  window.scrollTo({ top: y, behavior: "smooth" });
-};
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="flex flex-col   gap-10 ">

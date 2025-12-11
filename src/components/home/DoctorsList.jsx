@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { doctors } from "../../assets/assets";
 
 const DoctorsList = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col gap-4 ">
       <div className="flex flex-col justify-center items-center gap-4">
@@ -27,7 +30,10 @@ const DoctorsList = () => {
           </div>
         ))}
       </div>
-      <div className="flex justify-center items-center">
+      <div
+        className="flex justify-center items-center"
+        onClick={() => navigate("/patient/dashboard/all-doctors")}
+      >
         <button className="p-3 px-8 text-center text-sm rounded-3xl border border-border-primary text-primary cursor-pointer hover:bg-primary hover:text-white transition-colors ease-in-out">
           View All Doctors
         </button>
