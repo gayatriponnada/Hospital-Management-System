@@ -1,8 +1,11 @@
 import { useState } from "react";
 import about from "../../assets/about_image.png";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 const Signup = () => {
+  const { login } = useAuth();
+
   const [details, setDetails] = useState({
     fullname: "",
     email: "",
@@ -49,24 +52,31 @@ const Signup = () => {
 
     setErrors(newError);
 
-     return Object.keys(newError).length === 0; 
+    return Object.keys(newError).length === 0;
   };
 
-const handleLogin = () => {
-  if (validate()) {
-    if (details.role === "admin") {
-      navigate("/admin/dashboard");
-      return;
-    } else if (details.role === "doctor") {
-      navigate("/doctor/dashboard");
-      return;
-    } else if (details.role === "patient") {
-      navigate("/");
+  const handleLogin = () => {
+    if (validate()) {
+      login({
+        fullname: details.fullname,
+        email: details.email,
+        password: details.password,
+        role: details.role,
+      });
+
+      if (details.role === "admin") {
+        navigate("/admin/dashboard");
+        return;
+      } else if (details.role === "doctor") {
+        navigate("/doctor/dashboard");
+        return;
+      } else if (details.role === "patient") {
+        navigate("/");
+        return;
+      }
       return;
     }
-    return;
-  }
-};
+  };
 
   return (
     <div
@@ -142,7 +152,6 @@ const handleLogin = () => {
             <label className="text-sm text-gray-600">Select Role</label>
             <select
               className="select w-full p-2 border-(--border-primary) border font-normal rounded outline-none focus:border-input focus:outline-none"
-              defaultValue="Select Appointment Type"
               value={details?.role}
               onChange={(e) => {
                 setDetails({ ...details, role: e.target.value });

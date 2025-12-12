@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useAuth } from "../../context/AuthContext.jsx";
 import about from "../../assets/about_image.png";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const { login } = useAuth();
   const [details, setDetails] = useState({
     email: "",
     password: "",
@@ -38,6 +40,13 @@ const Login = () => {
 
   const handleLogin = () => {
     if (validate()) {
+
+      login({
+        email: details.email,
+        password: details.password,
+        role: details.role,
+      });
+
       if (details.role === "admin") {
         navigate("/admin/dashboard");
         return;
@@ -102,7 +111,6 @@ const Login = () => {
           <label className="text-sm text-gray-600">Select Role</label>
           <select
             className=" select  w-full p-2 border-(--border-primary) border rounded font-normal outline-none focus:border-input focus:outline-none"
-            defaultValue="Select Appointment Type"
             value={details?.role}
             onChange={(e) => {
               setDetails({ ...details, role: e.target.value });
