@@ -1,10 +1,13 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+  themes: all;
+}
 @theme {
-    --color-primary: #5f6fff;
-    --border-primary: #9297a1;
-    
+  --color-primary: #5f6fff;
+  --border-primary: #9297a1;
+  --color-input: #5e81ac;
 }
 
-@utility h-full-screen{
-    height: 100%;
+@utility h-full-screen {
+  height: 100%;
 }

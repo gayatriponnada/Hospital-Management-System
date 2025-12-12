@@ -89,7 +89,7 @@ const handleLogin = () => {
           <div className="w-[48%]">
             <label className="text-sm text-gray-600">Full Name</label>
             <input
-              className="w-full p-2 border-(--border-primary) border rounded"
+              className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
               value={details?.fullname}
               onChange={(e) => {
                 setDetails({ ...details, fullname: e.target.value });
@@ -107,7 +107,7 @@ const handleLogin = () => {
           <div className="w-[48%]">
             <label className="text-sm text-gray-600">Email</label>
             <input
-              className="w-full p-2 border-(--border-primary) border rounded"
+              className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
               value={details?.email}
               onChange={(e) => {
                 setDetails({ ...details, email: e.target.value });
@@ -123,7 +123,7 @@ const handleLogin = () => {
           <div className="w-[48%]">
             <label className="text-sm text-gray-600">Password</label>
             <input
-              className="w-full p-2 border-(--border-primary) border rounded"
+              className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
               value={details?.password}
               onChange={(e) => {
                 setDetails({ ...details, password: e.target.value });
@@ -141,7 +141,7 @@ const handleLogin = () => {
           <div className="w-[48%]">
             <label className="text-sm text-gray-600">Select Role</label>
             <select
-              className="w-full p-2 border-(--border-primary) border rounded"
+              className="w-full p-2 border-(--border-primary) border font-normal rounded outline-none focus:border-input focus:outline-none"
               value={details?.role}
               onChange={(e) => {
                 setDetails({ ...details, role: e.target.value });
@@ -163,10 +163,11 @@ const handleLogin = () => {
           </div>
         </div>
 
-        <div className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer">
-          <button className="text-white cursor-pointer" onClick={handleLogin}>
-            Register
-          </button>
+        <div
+          className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer "
+          onClick={handleLogin}
+        >
+          <button className="text-white cursor-pointer">Register</button>
         </div>
         <div className="flex gap-2">
           <div className="text-sm text-gray-400">Create an new account?</div>

@@ -18,10 +18,10 @@ const Navbar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? "border-b-2 border-primary" : ""
+              isActive ? "border-b-2 border-primary p-1" : ""
             }
           >
-            HOME
+            APPOINTMENTS
           </NavLink>
         </li>
 
@@ -29,7 +29,7 @@ const Navbar = () => {
           <NavLink
             to="/patient/dashboard/all-doctors"
             className={({ isActive }) =>
-              isActive ? "border-b-2 border-primary" : ""
+              isActive ? "border-b-2 border-primary p-1" : ""
             }
           >
             ALL DOCTORS
@@ -40,7 +40,7 @@ const Navbar = () => {
           <NavLink
             to="/patient/dashboard/about"
             className={({ isActive }) =>
-              isActive ? "border-b-2 border-primary" : ""
+              isActive ? "border-b-2 border-primary p-1" : ""
             }
           >
             ABOUT
@@ -51,7 +51,7 @@ const Navbar = () => {
           <NavLink
             to="/contact"
             className={({ isActive }) =>
-              isActive ? "border-b-2 border-primary" : ""
+              isActive ? "border-b-2 border-primary p-1" : ""
             }
           >
             CONTACT US

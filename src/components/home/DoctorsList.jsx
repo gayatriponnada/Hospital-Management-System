@@ -13,7 +13,7 @@ const DoctorsList = () => {
         </div>
       </div>
       <div className=" flex flex-wrap  items-center justify-center gap-4   ">
-        {doctors.slice(0, 9).map((doctor, index) => (
+        {doctors.slice(0, 8).map((doctor, index) => (
           <div
             key={index}
             className="flex flex-col gap-1  items-start w-1/5 border-blue-200  border rounded-2xl cursor-pointer transition-transform  ease-in-out hover:-translate-y-2"

@@ -312,3 +312,126 @@ export const doctors = [
     },
   },
 ];
+
+export const doctorAvailability = {
+  doc1: {
+    daysAvailable: ["Mon", "Tue", "Thu", "Sat"],
+    slots: {
+      morning: ["09:00 AM", "09:30 AM", "10:00 AM", "11:00 AM"],
+      afternoon: ["02:00 PM", "02:30 PM", "03:00 PM"],
+    },
+  },
+
+  doc2: {
+    daysAvailable: ["Mon", "Wed", "Fri"],
+    slots: {
+      morning: ["10:00 AM", "10:30 AM"],
+      afternoon: ["01:00 PM", "01:30 PM", "02:00 PM"],
+      evening: ["05:00 PM"],
+    },
+  },
+
+  doc3: {
+    daysAvailable: ["Tue", "Thu", "Sun"],
+    slots: {
+      morning: ["08:30 AM", "09:00 AM"],
+      afternoon: ["12:00 PM", "12:30 PM"],
+    },
+  },
+
+  doc4: {
+    daysAvailable: ["Mon", "Tue", "Wed", "Thu"],
+    slots: {
+      morning: ["09:00 AM", "10:00 AM"],
+      afternoon: ["03:00 PM", "04:00 PM"],
+    },
+  },
+
+  doc5: {
+    daysAvailable: ["Fri", "Sat"],
+    slots: {
+      morning: ["10:00 AM", "11:00 AM"],
+      afternoon: ["02:00 PM", "03:00 PM"],
+    },
+  },
+
+  doc6: {
+    daysAvailable: ["Mon", "Wed", "Thu", "Sun"],
+    slots: {
+      morning: ["09:00 AM"],
+      afternoon: ["01:00 PM", "02:00 PM"],
+    },
+  },
+
+  doc7: {
+    daysAvailable: ["Tue", "Thu", "Sat"],
+    slots: {
+      morning: ["09:30 AM", "10:00 AM"],
+      afternoon: ["03:00 PM"],
+    },
+  },
+
+  doc8: {
+    daysAvailable: ["Mon", "Wed", "Fri"],
+    slots: {
+      morning: ["11:00 AM"],
+      afternoon: ["01:30 PM", "02:00 PM"],
+    },
+  },
+
+  doc9: {
+    daysAvailable: ["Tue", "Thu"],
+    slots: {
+      morning: ["10:00 AM", "10:30 AM"],
+      afternoon: ["01:00 PM"],
+    },
+  },
+
+  doc10: {
+    daysAvailable: ["Mon", "Sat"],
+    slots: {
+      morning: ["09:00 AM"],
+      afternoon: ["04:00 PM"],
+    },
+  },
+
+  doc11: {
+    daysAvailable: ["Mon", "Wed", "Fri", "Sun"],
+    slots: {
+      morning: ["10:00 AM", "10:30 AM"],
+      afternoon: ["01:00 PM", "01:30 PM", "02:00 PM"],
+    },
+  },
+
+  doc12: {
+    daysAvailable: ["Tue", "Thu"],
+    slots: {
+      morning: ["11:00 AM"],
+      afternoon: ["03:00 PM"],
+    },
+  },
+
+  doc13: {
+    daysAvailable: ["Mon", "Tue", "Fri"],
+    slots: {
+      morning: ["09:00 AM"],
+      afternoon: ["01:00 PM", "02:00 PM"],
+    },
+  },
+
+  doc14: {
+    daysAvailable: ["Wed", "Fri", "Sat"],
+    slots: {
+      morning: ["10:00 AM", "11:00 AM"],
+      afternoon: ["03:00 PM"],
+    },
+  },
+
+  doc15: {
+    daysAvailable: ["Thu", "Sun"],
+    slots: {
+      morning: ["08:00 AM", "09:00 AM"],
+      afternoon: ["12:00 PM"],
+    },
+  },
+};

@@ -61,7 +61,7 @@ const Login = () => {
       }}
     >
       <div className="absolute inset-0 backdrop-blur-sm bg-white/8"></div>
-      <div className="flex flex-col gap-5 w-[28vw]  h-[70vh] rounded-xl border border-(--border-primary) p-4 shadow-xl relative z-10 ">
+      <div className="flex flex-col gap-5 w-[28vw]  min-h-[70vh] rounded-xl border border-(--border-primary) p-4 shadow-xl relative z-10 ">
         <div className="text-2xl text-gray-600 font-medium">Login</div>
         <div className="text-sm text-gray-600">
           Please log in to book appointment
@@ -69,7 +69,7 @@ const Login = () => {
         <div>
           <label className="text-sm text-gray-600">Email</label>
           <input
-            className="w-full p-2 border-(--border-primary) border rounded"
+            className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none "
             value={details?.email}
             onChange={(e) => {
               setDetails({ ...details, email: e.target.value });
@@ -84,7 +84,7 @@ const Login = () => {
         <div>
           <label className="text-sm text-gray-600">Password</label>
           <input
-            className="w-full p-2 border-(--border-primary) border rounded"
+            className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
             value={details?.password}
             onChange={(e) => {
               setDetails({ ...details, password: e.target.value });
@@ -101,7 +101,7 @@ const Login = () => {
         <div className="w-full">
           <label className="text-sm text-gray-600">Select Role</label>
           <select
-            className="w-full p-2 border-(--border-primary) border rounded"
+            className="w-full p-2 border-(--border-primary) border rounded font-normal outline-none focus:border-input focus:outline-none"
             value={details?.role}
             onChange={(e) => {
               setDetails({ ...details, role: e.target.value });
@@ -121,8 +121,11 @@ const Login = () => {
             <p className="text-red-400 text-xs font-normal">{errors.role}</p>
           )}
         </div>
-        <div className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer">
-          <button className="text-white cursor-pointer" onClick={handleLogin}>
+        <div
+          className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer"
+          onClick={handleLogin}
+        >
+          <button className="text-white cursor-pointer font-normal">
             Login
           </button>
         </div>
