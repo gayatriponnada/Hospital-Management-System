@@ -37,13 +37,13 @@ const SpecialityList = ({ id }) => {
   };
 
   return (
-    <div className="flex  flex-col gap-4 w-[40%]  ">
+    <div className="flex  flex-col gap-2 w-[40%]  ">
       {buttons.map((button) => {
         const isActive = id === button.name;
         return (
           <button
             key={button.id}
-            className={`text-left p-1.5 text-sm text-gray-500 border-(--border-primary) border rounded cursor-pointer
+            className={`btn text-left text-sm text-gray-500 border-(--border-primary) border rounded cursor-pointer
             ${isActive?' bg-blue-200 text-white font-semibold border-blue-200':''}`}
             onClick={() => handleClick(button.name)}
           >
