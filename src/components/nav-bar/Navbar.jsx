@@ -1,19 +1,20 @@
 import React from "react";
 import { assets } from "../../assets/assets";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Login from "../login/Signup";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div
-      className="flex justify-between items-center p-2 px-5 
+      className="flex justify-start items-center gap-60 p-2 px-5 
                     border-b border-gray-200 sticky top-0  bg-white z-10"
     >
       <img className="w-40" src={assets.logo} alt="Logo" />
 
-      <ul className="flex items-center p-2 gap-5">
+      <ul className="flex items-center p-2 gap-6">
         <li className="text-sm font-semibold">
           <NavLink
             to="/"
@@ -58,13 +59,14 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
-
-      <button
-        onClick={() => navigate("/signup")}
-        className="p-3 px-8 text-sm rounded-3xl bg-primary text-white cursor-pointer"
-      >
-        Create account
-      </button>
+      {location.pathname.includes("/") ? null : (
+        <button
+          onClick={() => navigate("/signup")}
+          className="p-3 px-8 text-sm rounded-3xl bg-primary text-white cursor-pointer"
+        >
+          Create account
+        </button>
+      )}
     </div>
   );
 };

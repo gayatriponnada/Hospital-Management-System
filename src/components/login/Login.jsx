@@ -101,16 +101,13 @@ const Login = () => {
         <div className="w-full">
           <label className="text-sm text-gray-600">Select Role</label>
           <select
-            className="w-full p-2 border-(--border-primary) border rounded font-normal outline-none focus:border-input focus:outline-none"
+            className=" select  w-full p-2 border-(--border-primary) border rounded font-normal outline-none focus:border-input focus:outline-none"
+            defaultValue="Select Appointment Type"
             value={details?.role}
             onChange={(e) => {
               setDetails({ ...details, role: e.target.value });
             }}
           >
-            <option value="" disabled>
-              Select your role
-            </option>
-
             {users.map((user) => (
               <option key={user.role} value={user.role}>
                 {user.displayName}

@@ -37,7 +37,7 @@ const SpecialityList = ({ id }) => {
   };
 
   return (
-    <div className="flex  flex-col gap-2 w-[40%]  ">
+    <div className="flex  flex-col gap-2 min-w-[25%]  ">
       {buttons.map((button) => {
         const isActive = id === button.name;
         return (

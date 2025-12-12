@@ -10,7 +10,7 @@ const DoctorsData = ({ id }) => {
   );
 
   return (
-    <div className="drawer drawer-end">
+    <div className="drawer drawer-end ">
       <input
         id="my-drawer-5"
         type="checkbox"
@@ -19,7 +19,7 @@ const DoctorsData = ({ id }) => {
         onChange={(e) => setOpen(e.target.checked)}
       />
       <div className="drawer-content">
-        <div className=" flex flex-wrap  items-center justify-start gap-4 ">
+        <div className=" flex flex-wrap  items-center justify-start gap-4   ">
           {(speciality ? filteredDoctors : doctors).map((doctor, index) => (
             <label
               htmlFor="my-drawer-5"
