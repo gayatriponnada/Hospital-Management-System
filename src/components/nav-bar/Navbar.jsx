@@ -68,7 +68,7 @@ const Navbar = () => {
           className="avatar avatar-placeholder cursor-pointer"
         >
           <div className="bg-neutral text-neutral-content w-8 rounded-full">
-            <span className="text-lg">{user.email?.[0]}</span>
+            <span className="text-lg">{user?.email?.[0]}</span>
           </div>
         </button>
 
@@ -79,17 +79,17 @@ const Navbar = () => {
                 Welcome
                 <span className="text-sm font-bold text-primary">
                   {" "}
-                  {user.fullname},
+                  {user?.fullname},
                 </span>
               </span>
               <div className="flex flex-col gap-2">
                 <div className="flex justify-start gap-4">
                   <span className="font-bold w-[15%]">Email</span>
-                  <span>{user.email}</span>
+                  <span>{user?.email}</span>
                 </div>
                 <div className="flex justify-start gap-4">
                   <span className="font-bold w-[15%]">Role</span>
-                  <span>{user.role}</span>
+                  <span>{user?.role}</span>
                 </div>
                 <button className="btn" onClick={() => navigate("/login")}>
                   Logout

@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { doctors } from "../../assets/assets";
 
 const DoctorsData = ({ id }) => {
   const [open, setOpen] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState("");
 
   const speciality = id;
   const filteredDoctors = doctors.filter(
     (doctor) => doctor.speciality === speciality
   );
+
+  useEffect(() => {
+    console.log("Selected Doctor:", selectedDoctor);
+  }, [selectedDoctor]);
 
   return (
     <div className="drawer drawer-end ">
@@ -25,6 +30,9 @@ const DoctorsData = ({ id }) => {
               htmlFor="my-drawer-5"
               key={index}
               className="flex flex-col gap-1  items-start w-1/4 border-blue-200  border rounded-2xl cursor-pointer transition-transform  ease-in-out hover:-translate-y-2"
+              onClick={() => {
+                setSelectedDoctor(doctor.name); 
+              }}
             >
               <img
                 className="w-full h-56 bg-blue-200 rounded-tr-2xl rounded-tl-2xl"
@@ -82,21 +90,24 @@ const DoctorsData = ({ id }) => {
             <div className="flex flex-col gap-2 p-2">
               <label>Physician</label>
               <select
-                defaultValue="Select Physician"
                 className="select select-primary"
+                onChange={(e) => setSelectedDoctor(e.target.value)}
+                value={selectedDoctor || ""}
               >
-                {filteredDoctors.map((doctor, index) => (
-                  <option key={index} value={doctor.name}>
-                    {doctor.name}
-                  </option>
-                ))}
+                {(speciality ? filteredDoctors : doctors).map(
+                  (doctor, index) => (
+                    <option key={index} value={doctor.name}>
+                      {doctor.name}
+                    </option>
+                  )
+                )}
               </select>
             </div>
             <div className="flex flex-col gap-2 p-2">
               <label>Note</label>
               <textarea
                 className="textarea textarea-primary"
-                placeholder="Bio"
+                placeholder="Enter any specific notes..."
               ></textarea>
             </div>
             <div className="flex flex-col gap-2">
