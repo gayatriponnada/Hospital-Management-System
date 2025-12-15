@@ -7,6 +7,7 @@ import Login from "./components/login/Login";
 import Layout from "./components/nav-bar/Layout";
 import Doctors from "./pages/Doctors";
 import About from "./pages/About";
+import LabReports from "./pages/LabReports";
 
 function App() {
   return (
@@ -17,7 +18,14 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/patient/dashboard/all-doctors" element={<Doctors />} />
-          <Route path="/patient/dashboard/all-doctors/:id" element={<Doctors />} />
+          <Route
+            path="/patient/dashboard/all-doctors/:id"
+            element={<Doctors />}
+          />
+          <Route
+            path="/patient/dashboard/lab-reports"
+            element={<LabReports />}
+          />
           <Route path="/patient/dashboard/about" element={<About />} />
           <Route path="/patient/dashboard/contact" element={<About />} />
         </Route>

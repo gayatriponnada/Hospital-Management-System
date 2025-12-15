@@ -157,6 +157,9 @@ const Signup = () => {
                 setDetails({ ...details, role: e.target.value });
               }}
             >
+              <option disabled value="">
+                Select the role
+              </option>
               {users.map((user) => (
                 <option key={user.role} value={user.role}>
                   {user.displayName}
