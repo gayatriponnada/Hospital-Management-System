@@ -1,18 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { doctors } from "../../assets/assets";
 
 const DoctorsData = ({ id }) => {
   const [open, setOpen] = useState(false);
-  const [selectedDoctor, setSelectedDoctor] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(false);
+
+  const [appointmentDetails, setAppointmentDetails] = useState({
+    appointmentType: "",
+    physician: "",
+    note: "",
+    date: "",
+  });
+
+  const handleAppointment = () => {
+    if (
+      appointmentDetails.appointmentType &&
+      appointmentDetails.physician &&
+      appointmentDetails.date
+    ) {
+      setShowToast(true);
+
+      setTimeout(() => setShowToast(false), 3000);
+      console.log(appointmentDetails);
+    } else {
+      console.log(appointmentDetails);
+      setErrorMsg(true);
+      setTimeout(() => setErrorMsg(false), 3000);
+    }
+  };
 
   const speciality = id;
   const filteredDoctors = doctors.filter(
     (doctor) => doctor.speciality === speciality
   );
 
+  const selectedDate = useRef(null);
+
   useEffect(() => {
-    console.log("Selected Doctor:", selectedDoctor);
-  }, [selectedDoctor]);
+    const calendarElement = selectedDate.current;
+    if (calendarElement) {
+      const handleChange = (e) => {
+        const selectedDate = e.target.value;
+        setAppointmentDetails((prev) => ({
+          ...prev,
+          date: selectedDate,
+        }));
+      };
+      calendarElement.addEventListener("change", handleChange);
+
+      return () => {
+        calendarElement.removeEventListener("change", handleChange);
+      };
+    }
+  }, []);
 
   return (
     <div className="drawer drawer-end ">
@@ -31,7 +72,12 @@ const DoctorsData = ({ id }) => {
               key={index}
               className="flex flex-col gap-1  items-start w-1/4 border-blue-200  border rounded-2xl cursor-pointer transition-transform  ease-in-out hover:-translate-y-2"
               onClick={() => {
-                setSelectedDoctor(doctor.name); 
+                setAppointmentDetails({
+                  appointmentType: "",
+                  physician: doctor.name,
+                  note: "",
+                  date: "",
+                });
               }}
             >
               <img
@@ -55,7 +101,7 @@ const DoctorsData = ({ id }) => {
           aria-label="close sidebar"
           className="drawer-overlay closedrawer-side"
         ></label>
-        <div className="menu flex flex-col gap-8 bg-base-200 min-h-full w-80 p-4 ">
+        <div className="menu  relative flex flex-col gap-8 bg-base-200 min-h-full w-80 p-4 ">
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-normal">Book Appointment</h2>
             <svg
@@ -75,9 +121,18 @@ const DoctorsData = ({ id }) => {
             <div className="flex flex-col gap-2 p-2">
               <label>Appointment Type</label>
               <select
-                defaultValue="Select Appointment Type"
+                value={appointmentDetails.appointmentType || ""}
+                onChange={(e) => {
+                  setAppointmentDetails((prev) => ({
+                    ...prev,
+                    appointmentType: e.target.value,
+                  }));
+                }}
                 className="select select-primary"
               >
+                <option value="" disabled>
+                  Select Appointment Type
+                </option>
                 <option>General Consultation</option>
                 <option>General Checkup</option>
                 <option>Maternity</option>
@@ -91,8 +146,13 @@ const DoctorsData = ({ id }) => {
               <label>Physician</label>
               <select
                 className="select select-primary"
-                onChange={(e) => setSelectedDoctor(e.target.value)}
-                value={selectedDoctor || ""}
+                onChange={(e) =>
+                  setAppointmentDetails((prev) => ({
+                    ...prev,
+                    physician: e.target.value,
+                  }))
+                }
+                value={appointmentDetails.physician || ""}
               >
                 {(speciality ? filteredDoctors : doctors).map(
                   (doctor, index) => (
@@ -106,14 +166,30 @@ const DoctorsData = ({ id }) => {
             <div className="flex flex-col gap-2 p-2">
               <label>Note</label>
               <textarea
+                value={appointmentDetails?.note}
+                onChange={(e) => {
+                  setAppointmentDetails((prev) => ({
+                    ...prev,
+                    note: e.target.value,
+                  }));
+                }}
                 className="textarea textarea-primary"
                 placeholder="Enter any specific notes..."
               ></textarea>
             </div>
             <div className="flex flex-col gap-2">
-              <label>Select Date</label>
+              <label>
+                Select Date:{" "}
+                <span className="text-sm text-primary font-medium">
+                  {" "}
+                  {appointmentDetails.date}
+                </span>
+              </label>
 
-              <calendar-date class="cally bg-base-100 border border-base-300 shadow-lg rounded-box">
+              <calendar-date
+                class="cally bg-base-100 border border-base-300 shadow-lg rounded-box"
+                ref={selectedDate}
+              >
                 <svg
                   aria-label="Previous"
                   className="fill-current size-4"
@@ -142,7 +218,25 @@ const DoctorsData = ({ id }) => {
               </calendar-date>
             </div>
           </div>
-          <div>
+
+          {showToast && (
+            <div className="toast toast-top toast-center">
+              <div role="alert" className="alert alert-success alert-soft">
+                <span>Your appointment has been Booked!</span>
+              </div>
+            </div>
+          )}
+
+          {errorMsg && (
+            <div
+              role="alert"
+              className="absolute top:10 alert alert-error alert-soft"
+            >
+              <span>Error! Fill the details completely.</span>
+            </div>
+          )}
+
+          <div onClick={handleAppointment}>
             <button className="btn text-white btn-primary w-full ">
               Book Now
             </button>

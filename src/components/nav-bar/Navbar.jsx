@@ -40,6 +40,17 @@ const Navbar = () => {
 
         <li className="text-sm font-semibold">
           <NavLink
+            to="/patient/dashboard/lab-reports"
+            className={({ isActive }) =>
+              isActive ? "border-b-2 border-primary p-1" : ""
+            }
+          >
+            LAB REPORTS
+          </NavLink>
+        </li>
+
+        <li className="text-sm font-semibold">
+          <NavLink
             to="/patient/dashboard/about"
             className={({ isActive }) =>
               isActive ? "border-b-2 border-primary p-1" : ""
