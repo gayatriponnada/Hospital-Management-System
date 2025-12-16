@@ -4,7 +4,7 @@ import PatientHealthDetails from "../components/lab-reports/PatientHealthDetails
 
 const LabReports = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <PatientDetails />
       <PatientHealthDetails />
     </div>
