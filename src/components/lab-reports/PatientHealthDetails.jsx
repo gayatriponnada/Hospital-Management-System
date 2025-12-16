@@ -8,7 +8,7 @@ const PatientHealthDetails = () => {
       <div className="bg-white w-[40%] h-[50%] p-4 rounded-lg shadow-md flex flex-col gap-4">
         <div className="text-sm font-bold text-primary">Heart Status</div>
         <div className="flex justify-between items-center ">
-          <div className="bg-base-100 w-[40%] rounded-lg p-2">
+          <div className="bg-base-100 w-[50%] rounded-lg p-2">
             <div className="flex flex-col gap-2 p-2 w-[80%]">
               <div className=" flex gap-2">
                 <img

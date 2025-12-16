@@ -3,7 +3,7 @@ import React from "react";
 const BloodCard = () => {
   return (
     <div className="flex flex-col justify-start items-start gap-2 bg-white h-[29.5vh] w-full p-4 rounded-lg shadow-md">
-      <div className="text-sm font-semibold">Blood Sugar</div>
+      <div className="text-sm font-semibold text-primary">Blood Sugar</div>
       <div className="flex justify-center w-full">
         <div
           className="radial-progress text-warning"
