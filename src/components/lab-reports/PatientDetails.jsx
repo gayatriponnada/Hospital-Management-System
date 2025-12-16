@@ -4,7 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 const PatientDetails = () => {
   const { user } = useAuth();
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex ">
       <div className="flex  gap-10 items-center bg-white rounded-md p-4 w-[95%] shadow-md">
         <div className="flex  justify-start items-center w-[30%] gap-6 border-r border-neutral-content">
           <div
