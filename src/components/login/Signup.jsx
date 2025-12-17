@@ -11,6 +11,10 @@ const Signup = () => {
     fullname: "",
     email: "",
     password: "",
+    gender: "",
+    dob: "",
+    contactNumber: "",
+    address: "",
     role: "",
   });
 
@@ -65,6 +69,10 @@ const Signup = () => {
           email: details?.email,
           password: details?.password,
           role: details?.role,
+          gender: details?.gender,
+          contactNumber: details?.contactNumber,
+          address: details?.address,
+          dob: details?.dob,
         }
       );
       console.log("User created:", response.data);
@@ -108,83 +116,138 @@ const Signup = () => {
           Create an account
         </div>
         <div className="text-sm text-gray-600">
-          Please create an account to book appointment
+          Please create an account by providing all the required details.
         </div>
+        <div className="max-h-[50%] overflow-auto">
+          <div className="font-semibold text-primary">Personal Information</div>
+          <div className=" flex  flex-wrap gap-2 ">
+            <div className="w-[48%]">
+              <label className="text-sm text-gray-600">Full Name</label>
+              <input
+                className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
+                value={details?.fullname}
+                onChange={(e) => {
+                  setDetails({ ...details, fullname: e.target.value });
+                }}
+                placeholder="Enter your first name"
+                type="text"
+              />
+              {errors.fullname && (
+                <p className="text-red-400 text-xs font-normal">
+                  {errors.fullname}
+                </p>
+              )}
+            </div>
 
-        <div className=" flex  flex-wrap gap-2 ">
-          <div className="w-[48%]">
-            <label className="text-sm text-gray-600">Full Name</label>
-            <input
-              className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
-              value={details?.fullname}
-              onChange={(e) => {
-                setDetails({ ...details, fullname: e.target.value });
-              }}
-              placeholder="Enter your first name"
-              type="text"
-            />
-            {errors.fullname && (
-              <p className="text-red-400 text-xs font-normal">
-                {errors.fullname}
-              </p>
-            )}
-          </div>
+            <div className="w-[48%]">
+              <label className="text-sm text-gray-600">Email</label>
+              <input
+                className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
+                value={details?.email}
+                onChange={(e) => {
+                  setDetails({ ...details, email: e.target.value });
+                }}
+                placeholder="Enter your email"
+                type="email"
+              />
+              {errors.email && (
+                <p className="text-red-400 text-xs font-normal">
+                  {errors.email}
+                </p>
+              )}
+            </div>
 
-          <div className="w-[48%]">
-            <label className="text-sm text-gray-600">Email</label>
-            <input
-              className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
-              value={details?.email}
-              onChange={(e) => {
-                setDetails({ ...details, email: e.target.value });
-              }}
-              placeholder="Enter your email"
-              type="email"
-            />
-            {errors.email && (
-              <p className="text-red-400 text-xs font-normal">{errors.email}</p>
-            )}
-          </div>
+            <div className="w-[48%]">
+              <label className="text-sm text-gray-600">Password</label>
+              <input
+                className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
+                value={details?.password}
+                onChange={(e) => {
+                  setDetails({ ...details, password: e.target.value });
+                }}
+                placeholder="Enter your password"
+                type="password"
+              />
+              {errors.password && (
+                <p className="text-red-400 text-xs font-normal">
+                  {errors.password}
+                </p>
+              )}
+            </div>
 
-          <div className="w-[48%]">
-            <label className="text-sm text-gray-600">Password</label>
-            <input
-              className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
-              value={details?.password}
-              onChange={(e) => {
-                setDetails({ ...details, password: e.target.value });
-              }}
-              placeholder="Enter your password"
-              type="password"
-            />
-            {errors.password && (
-              <p className="text-red-400 text-xs font-normal">
-                {errors.password}
-              </p>
-            )}
-          </div>
+            <div className="w-[48%]">
+              <label className="text-sm text-gray-600">Gender</label>
+              <input
+                className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
+                placeholder="Enter your Gender"
+                type="text"
+                value={details?.gender}
+                onChange={(e) => {
+                  setDetails({ ...details, gender: e.target.value });
+                }}
+              />
+            </div>
+            <div className="w-[48%]">
+              <label className="text-sm text-gray-600">Date of Birth</label>
+              <input
+                className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
+                placeholder="Enter your DOB"
+                type="date"
+                value={details?.dob}
+                onChange={(e) => {
+                  setDetails({ ...details, dob: e.target.value });
+                }}
+              />
+            </div>
+            <div className="w-[48%]">
+              <label className="text-sm text-gray-600">Contact Number</label>
+              <input
+                className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
+                placeholder="Enter your contact number"
+                type="number"
+                value={details?.contactNumber}
+                onChange={(e) => {
+                  setDetails({ ...details, contactNumber: e.target.value });
+                }}
+              />
+            </div>
+            <div className="w-[48%]">
+              <label className="text-sm text-gray-600">Address</label>
+              <input
+                className="w-full p-2 border-(--border-primary) border rounded outline-none focus:border-input focus:outline-none"
+                placeholder="Enter your address"
+                type="text"
+                value={details?.address}
+                onChange={(e) => {
+                  setDetails({ ...details, address: e.target.value });
+                }}
+              />
+            </div>
 
-          <div className="w-[48%]">
-            <label className="text-sm text-gray-600">Select Role</label>
-            <select
-              className="select w-full p-2 border-(--border-primary) border font-normal rounded outline-none focus:border-input focus:outline-none"
-              value={details?.role}
-              onChange={(e) => {
-                setDetails({ ...details, role: e.target.value });
-              }}
-            >
-              <option disabled value="">
-                Select the role
-              </option>
-              {users.map((user) => (
-                <option key={user.role} value={user.role}>
-                  {user.displayName}
+            <div className="w-[48%]">
+              <label className="text-sm text-gray-600">Select Role</label>
+              <select
+                className="select w-full p-2 border-(--border-primary) border font-normal rounded outline-none focus:border-input focus:outline-none"
+                value={details?.role}
+                onChange={(e) => {
+                  setDetails({ ...details, role: e.target.value });
+                }}
+              >
+                <option disabled value="">
+                  Select the role
                 </option>
-              ))}
-            </select>
-            {errors.role && (
-              <p className="text-red-400 text-xs font-normal">{errors.role}</p>
-            )}
+                {users.map((user) => (
+                  <option key={user.role} value={user.role}>
+                    {user.displayName}
+                  </option>
+                ))}
+              </select>
+              {errors.role && (
+                <p className="text-red-400 text-xs font-normal">
+                  {errors.role}
+                </p>
+              )}
+            </div>
           </div>
         </div>
 
