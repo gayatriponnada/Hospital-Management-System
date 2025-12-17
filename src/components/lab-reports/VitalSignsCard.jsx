@@ -29,11 +29,11 @@ const VitalSignsCard = () => {
           </div>
         </div>
       </div>
-      <div className="flex  justify-start items-center gap-2">
+      <div className="flex  justify-start items-center gap-2 p-2">
         <div>
-          <img className="w-10" src={oxygen_img} />
+          <img className="w-12" src={oxygen_img} />
         </div>
-        <div className="flex flex-col gap-1  p-2">
+        <div className="flex flex-col gap-1 ">
           <div className="text-xs font-normal ">Oxygen Saturation(SpO2)</div>
           <div className="text-sm font-bold">
             97 <span className="text-xs font-normal "> %</span>

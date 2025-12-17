@@ -2,6 +2,7 @@ import { useState } from "react";
 import about from "../../assets/about_image.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import axios from "axios";
 
 const Signup = () => {
   const { login } = useAuth();
@@ -55,26 +56,41 @@ const Signup = () => {
     return Object.keys(newError).length === 0;
   };
 
-  const handleLogin = () => {
-    if (validate()) {
-      login({
-        fullname: details.fullname,
-        email: details.email,
-        password: details.password,
-        role: details.role,
-      });
+  const registerUser = async () => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/users`,
+        {
+          fullname: details?.fullname,
+          email: details?.email,
+          password: details?.password,
+          role: details?.role,
+        }
+      );
+      console.log("User created:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
 
-      if (details.role === "admin") {
+  const handleRegister = async () => {
+    if (!validate()) return;
+
+    try {
+      const user = await registerUser();
+      login(user);
+
+      // role-based navigation
+      if (user.role === "admin") {
         navigate("/admin/dashboard");
-        return;
-      } else if (details.role === "doctor") {
+      } else if (user.role === "doctor") {
         navigate("/doctor/dashboard");
-        return;
-      } else if (details.role === "patient") {
+      } else {
         navigate("/");
-        return;
       }
-      return;
+    } catch (error) {
+      alert("Registration failed");
     }
   };
 
@@ -172,12 +188,14 @@ const Signup = () => {
           </div>
         </div>
 
-        <div
-          className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer "
-          onClick={handleLogin}
+        {/* <div className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer "> */}
+        <button
+          className=" btn text-white cursor-pointer"
+          onClick={handleRegister}
         >
-          <button className="text-white cursor-pointer">Register</button>
-        </div>
+          Register
+        </button>
+        {/* </div> */}
         <div className="flex gap-2">
           <div className="text-sm text-gray-400">Create an new account?</div>
           <a className="text-gray-700 text-sm underline" href="/login">

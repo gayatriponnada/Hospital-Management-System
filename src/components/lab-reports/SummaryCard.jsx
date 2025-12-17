@@ -45,7 +45,10 @@ const SummaryCard = () => {
   return (
     <div className="bg-white h-screen rounded-lg shadow-md p-4 flex flex-col gap-2">
       <div className=" flex justify-center items-center gap-2">
-        <div className="text-sm font-semibold text-primary"> Patient Health Summary</div>
+        <div className="text-sm font-semibold text-primary">
+          {" "}
+          Patient Health Summary
+        </div>
         <div className="tooltip cursor-pointer" data-tip="Moderate Risk">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +63,7 @@ const SummaryCard = () => {
       </div>
       <div className="w-full flex gap-2 items-center">
         {/* CHART */}
-        <div className="w-full">
+        <div className="w-[28%]">
           <Doughnut data={data} options={options} />
         </div>
 
