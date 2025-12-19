@@ -58,7 +58,7 @@ export const data = {
 
 const ChartCard = () => {
   return (
-    <div className="bg-white  rounded-lg shadow-md h-screen">
+    <div className="bg-white rounded-lg shadow-md flex-1 p-4">
       <Line options={options} data={data} />
     </div>
   );

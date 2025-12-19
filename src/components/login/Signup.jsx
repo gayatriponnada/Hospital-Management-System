@@ -253,7 +253,7 @@ const Signup = () => {
 
         {/* <div className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer "> */}
         <button
-          className=" btn text-white cursor-pointer"
+          className=" btn bg-primary border-none rounded-xl text-white cursor-pointer"
           onClick={handleRegister}
         >
           Register

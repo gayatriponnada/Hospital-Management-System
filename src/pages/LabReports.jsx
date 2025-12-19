@@ -8,20 +8,32 @@ import SummaryCard from "../components/lab-reports/SummaryCard";
 
 const LabReports = () => {
   return (
-    <div className="flex flex-col  gap-4">
-      <PatientDetails />
-      <div className="flex gap-4 justify-start items-start">
-        <PatientHealthDetails />
-        <div className="flex flex-col items-center justify-start gap-4 w-[20%] min-h-[30%]">
-          <BloodCard />
-          <VitalSignsCard />
-        </div>
-        <div className="flex flex-col w-[40%]  h-[50vh] gap-4">
-          <ChartCard />
-          <SummaryCard />
-        </div>
+    <div className="flex gap-4 justify-start items-start h-[80vh] ">
+      <PatientHealthDetails />
+      <div className="flex flex-col gap-4 w-[20%] h-full">
+        <BloodCard />
+        <VitalSignsCard />
+      </div>
+      <div className="flex flex-col w-[40%] gap-4 h-full">
+        <ChartCard />
+        <SummaryCard />
       </div>
     </div>
+    // <div className="flex flex-col gap-4 h-screen">
+    //   {/* <PatientDetails /> */}
+
+    //   <div className="flex gap-4 justify-start items-start bg-red-600 ">
+    //     <PatientHealthDetails />
+    //     <div className="flex flex-col gap-4 w-[20%] h-[76vh]">
+    //       <BloodCard />
+    //       <VitalSignsCard />
+    //     </div>
+    //     <div className="flex flex-col w-[40%] gap-4 h-[30vh]">
+    //       <ChartCard />
+    //       <SummaryCard />
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 

@@ -43,7 +43,7 @@ const Label = ({ color, text, value }) => (
 
 const SummaryCard = () => {
   return (
-    <div className="bg-white h-screen rounded-lg shadow-md p-4 flex flex-col gap-2">
+    <div className="bg-white flex-1 rounded-lg shadow-md p-4 flex flex-col gap-2">
       <div className=" flex justify-center items-center gap-2">
         <div className="text-sm font-semibold text-primary">
           {" "}
@@ -63,7 +63,7 @@ const SummaryCard = () => {
       </div>
       <div className="w-full flex gap-2 items-center">
         {/* CHART */}
-        <div className="w-[28%]">
+        <div className="w-[24%]">
           <Doughnut data={data} options={options} />
         </div>
 

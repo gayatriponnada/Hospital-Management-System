@@ -5,7 +5,7 @@ import heart_pluse_img from "../../assets/heart_pluse_img.jpg";
 
 const PatientHealthDetails = () => {
   return (
-      <div className="bg-white w-[40%] h-[50%] p-4 rounded-lg shadow-md flex flex-col gap-4">
+      <div className="bg-white w-[40%] p-4 rounded-lg shadow-md flex flex-col gap-4 h-full">
         <div className="text-sm font-bold text-primary">Heart Status</div>
         <div className="flex justify-between items-center ">
           <div className="bg-base-100 w-[50%] rounded-lg p-2">

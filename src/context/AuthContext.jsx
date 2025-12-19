@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔁 Restore login on refresh
+  // Restore login on refresh
   useEffect(() => {
     const auth = JSON.parse(localStorage.getItem("auth"));
 

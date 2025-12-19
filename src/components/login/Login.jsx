@@ -119,23 +119,23 @@ const Login = () => {
               Select the role
             </option>
             {users.map((user) => (
-                <option key={user.role} value={user.role}>
-                  {user.displayName}
-                </option>
+              <option key={user.role} value={user.role}>
+                {user.displayName}
+              </option>
             ))}
           </select>
           {errors.role && (
             <p className="text-red-400 text-xs font-normal">{errors.role}</p>
           )}
         </div>
-        <div
-          className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer"
+        {/* <div className=" flex bg-gray-700 justify-center items-center rounded-xl p-2 cursor-pointer"> */}
+        <button
+          className=" btn bg-primary border-none rounded-xl text-white cursor-pointer"
           onClick={handleLogin}
         >
-          <button className="text-white cursor-pointer font-normal">
-            Login
-          </button>
-        </div>
+          Login
+        </button>
+        {/* </div> */}
         <div className="flex gap-2">
           <div className="text-sm text-gray-400">Create an new account?</div>
           <a className="text-gray-700 text-sm underline" href="/signup">

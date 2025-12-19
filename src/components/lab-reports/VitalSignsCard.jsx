@@ -5,7 +5,7 @@ import oxygen_img from "../../assets/oxygen _img.png";
 
 const VitalSignsCard = () => {
   return (
-    <div className="flex flex-col gap-2 bg-white h-[50%] w-full p-4 rounded-lg shadow-md">
+    <div className="flex flex-col bg-white h-full p-4 rounded-lg shadow-md">
       <div className=" text-sm font-semibold text-primary">Vital Signs</div>
       <div className="flex justify-start items-center gap-2 w-[90%] border-b border-base-300 p-2">
         <div>

@@ -8,6 +8,8 @@ import Layout from "./components/nav-bar/Layout";
 import Doctors from "./pages/Doctors";
 import About from "./pages/About";
 import LabReports from "./pages/LabReports";
+import DoctorsLayout from "./components/nav-bar/DoctorsLayout";
+import DoctorsDashboard from "./pages/DoctorsDashboard";
 
 function App() {
   return (
@@ -28,6 +30,9 @@ function App() {
           />
           <Route path="/patient/dashboard/about" element={<About />} />
           <Route path="/patient/dashboard/contact" element={<About />} />
+        </Route>
+        <Route element={<DoctorsLayout />}>
+          <Route path="/doctor/dashboard" element={<DoctorsDashboard />} />
         </Route>
       </Routes>
     </>
