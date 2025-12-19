@@ -1,6 +1,6 @@
 import React from "react";
-import SpecialityList from "../components/doctors/SpecialityList";
-import DoctorsData from "../components/doctors/DoctorsData";
+import SpecialityList from "../components/patientpage-doctorsdata/SpecialityList";
+import DoctorsData from "../components/patientpage-doctorsdata/DoctorsData";
 import { useParams } from "react-router-dom";
 
 const Doctors = () => {

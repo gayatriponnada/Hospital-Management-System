@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import DoctorCards from "../components/doctors-dashboard/DoctorCards";
 
 const DoctorsDashboard = () => {
-	return (
-		<div>DoctorsDashboard</div>
-	)
-}
+  return (
+    <div>
+      <DoctorCards />
+    </div>
+  );
+};
 
-export default DoctorsDashboard
+export default DoctorsDashboard;

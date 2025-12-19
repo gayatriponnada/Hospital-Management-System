@@ -6,7 +6,7 @@ const DoctorsLayout = () => {
 	return (
 		<div>
 			<DoctorNavbar />
-			<main>
+			<main className='p-4'>
 				<Outlet/>
 			</main>
 			
