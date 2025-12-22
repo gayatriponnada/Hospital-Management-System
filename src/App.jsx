@@ -10,6 +10,7 @@ import About from "./pages/About";
 import LabReports from "./pages/LabReports";
 import DoctorsLayout from "./components/nav-bar/DoctorsLayout";
 import DoctorsDashboard from "./pages/DoctorsDashboard";
+import DoctorAppointmentDetails from "./pages/DoctorAppointmentDetails";
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
         </Route>
         <Route element={<DoctorsLayout />}>
           <Route path="/doctor/dashboard" element={<DoctorsDashboard />} />
+          <Route
+            path="/doctor/appointments"
+            element={<DoctorAppointmentDetails />}
+          />
         </Route>
       </Routes>
     </>

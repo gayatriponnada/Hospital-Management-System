@@ -33,11 +33,11 @@ const NextAppointmentDetails = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-2 w-full">
+    <div className="flex flex-col gap-2 w-full h-full">
       <div className="text-sm font-semibold text-secondary">
         Next Appointment Details
       </div>
-      <div className="flex flex-col gap-4 bg-white rounded-lg p-4 shadow-md  h-[58vh] overflow-auto">
+      <div className="flex flex-col gap-4 bg-white rounded-lg p-4 shadow-md  h-full overflow-auto">
         <div
           data-section="header"
           className="flex gap-2 justify-start items-center"

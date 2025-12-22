@@ -56,13 +56,49 @@ const appointmentsData = [
     time: "02:00 PM",
     status: "Cancelled",
   },
+  {
+    id: 5,
+    name: "Neha Iyer",
+    avatar: "N",
+    avatarUrl: "",
+    appointmentType: "Dermatology Follow-up",
+    doctor: "Dr. Kavita Menon",
+    date: "2025-01-18",
+    time: "02:00 PM",
+    status: "Cancelled",
+  },
+  {
+    id: 5,
+    name: "Neha Iyer",
+    avatar: "N",
+    avatarUrl: "",
+    appointmentType: "Dermatology Follow-up",
+    doctor: "Dr. Kavita Menon",
+    date: "2025-01-18",
+    time: "02:00 PM",
+    status: "Cancelled",
+  },
+	{
+    id: 5,
+    name: "Neha Iyer",
+    avatar: "N",
+    avatarUrl: "",
+    appointmentType: "Dermatology Follow-up",
+    doctor: "Dr. Kavita Menon",
+    date: "2025-01-18",
+    time: "02:00 PM",
+    status: "Cancelled",
+  },
+
 ];
 
-const DoctorAppointments = () => {
+const AppointmentsDetailsCard = () => {
   return (
-    <div className="flex flex-col gap-2 w-full">
-      <div className="text-sm font-semibold text-secondary">Today Appointments</div>
-      <div className="bg-white rounded-lg p-4 shadow-md  max-h-[58vh] overflow-auto">
+    <div className="flex flex-col gap-2 w-full h-full">
+      <div className="text-sm font-semibold text-secondary">
+        Today Appointments
+      </div>
+      <div className="bg-white rounded-lg p-4 shadow-md  max-h-[59vh] overflow-auto hover-scrollbar">
         <div className="flex flex-col gap-2 w-full">
           {appointmentsData.map((appointment) => (
             <div
@@ -84,7 +120,9 @@ const DoctorAppointments = () => {
                   </div>
                 </div>
               </div>
-              <div className="text-lg font-semibold text-neutral ">{appointment.time}</div>
+              <div className="text-lg font-semibold text-neutral ">
+                {appointment.time}
+              </div>
             </div>
           ))}
         </div>
@@ -93,4 +131,4 @@ const DoctorAppointments = () => {
   );
 };
 
-export default DoctorAppointments;
+export default AppointmentsDetailsCard;
