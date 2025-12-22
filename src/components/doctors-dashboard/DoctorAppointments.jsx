@@ -7,7 +7,7 @@ const appointmentsData = [
     avatar: "G", // fallback initial
     avatarUrl: "", // optional image url
     appointmentType: "General Checkup",
-    doctor: "Dr. Ramesh Kumar",
+    doctor: "Dr. Kumar",
     date: "2025-01-18",
     time: "09:30 AM",
     status: "Scheduled",
@@ -60,9 +60,9 @@ const appointmentsData = [
 
 const DoctorAppointments = () => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 w-full">
       <div className="text-sm font-semibold text-secondary">Today Appointments</div>
-      <div className="bg-white rounded-lg p-4 shadow-md w-[30%] max-h-[58vh] overflow-auto">
+      <div className="bg-white rounded-lg p-4 shadow-md  max-h-[58vh] overflow-auto">
         <div className="flex flex-col gap-2 w-full">
           {appointmentsData.map((appointment) => (
             <div
