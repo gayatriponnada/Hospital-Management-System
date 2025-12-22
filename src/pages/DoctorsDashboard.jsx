@@ -8,7 +8,7 @@ const DoctorsDashboard = () => {
   return (
     <div className="flex flex-col gap-2 h-[85vh]">
       <DoctorCards />
-      <div className="flex w-[full] gap-2">
+      <div className="flex w-[full] h-[full] gap-2">
         <DoctorAppointments />
         <AppointmentRequestCard />
         <NextAppointmentDetails />
