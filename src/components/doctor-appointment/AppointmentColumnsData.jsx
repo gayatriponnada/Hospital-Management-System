@@ -1,4 +1,6 @@
-export const appointmentColumnsData = [
+import ViewButton from "./ViewButton";
+
+export const appointmentColumnsData = () => [
   {
     key: "patient",
     label: "Patient Name",
@@ -55,10 +57,6 @@ export const appointmentColumnsData = [
   {
     key: "action",
     label: "Action",
-    render: () => (
-      <button className="btn p-4 btn-ghost text-secondary hover:bg-base-100 btn-xs">
-        View
-      </button>
-    ),
+    render: (item) => <ViewButton item={item} />,
   },
 ];

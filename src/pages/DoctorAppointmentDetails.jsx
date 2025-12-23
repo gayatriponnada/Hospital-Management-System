@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomTable from "../utils/CustomTable";
 import { appointmentColumnsData } from "../components/doctor-appointment/AppointmentColumnsData";
 
@@ -68,7 +68,7 @@ const DoctorAppointmentDetails = () => {
 
   return (
     <div>
-      <CustomTable columns={appointmentColumnsData} data={patientsDetails} />
+      <CustomTable columns={appointmentColumnsData()} data={patientsDetails} />
     </div>
   );
 };
