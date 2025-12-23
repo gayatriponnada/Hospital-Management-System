@@ -60,7 +60,7 @@ const Navbar = () => {
           </NavLink>
         </li>
 
-        <li className="text-sm font-semibold">
+        {/* <li className="text-sm font-semibold">
           <NavLink
             to="/contact"
             className={({ isActive }) =>
@@ -69,7 +69,7 @@ const Navbar = () => {
           >
             CONTACT US
           </NavLink>
-        </li>
+        </li> */}
       </ul>
 
       <div className="dropdown dropdown-end">

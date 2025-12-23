@@ -1,10 +1,10 @@
 import React from "react";
-import PatientDetails from "../components/lab-reports/PatientDetails";
-import PatientHealthDetails from "../components/lab-reports/PatientHealthDetails";
-import BloodCard from "../components/lab-reports/BloodCard";
-import VitalSignsCard from "../components/lab-reports/VitalSignsCard";
-import ChartCard from "../components/lab-reports/ChartCard";
-import SummaryCard from "../components/lab-reports/SummaryCard";
+import PatientDetails from "../../components/lab-reports/PatientDetails";
+import PatientHealthDetails from "../../components/lab-reports/PatientHealthDetails";
+import BloodCard from "../../components/lab-reports/BloodCard";
+import VitalSignsCard from "../../components/lab-reports/VitalSignsCard";
+import ChartCard from "../../components/lab-reports/ChartCard";
+import SummaryCard from "../../components/lab-reports/SummaryCard";
 
 const LabReports = () => {
   return (

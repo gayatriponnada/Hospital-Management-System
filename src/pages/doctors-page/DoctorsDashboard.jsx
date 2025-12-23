@@ -1,8 +1,8 @@
 import React from "react";
-import DoctorCards from "../components/doctors-dashboard/DoctorCards";
-import DoctorAppointments from "../components/doctors-dashboard/AppointmentsDetailsCard";
-import AppointmentRequestCard from "../components/doctors-dashboard/AppointmentRequestCard";
-import NextAppointmentDetails from "../components/doctors-dashboard/NextAppointmentDetails";
+import DoctorCards from "../../components/doctors-dashboard/DoctorCards";
+import DoctorAppointments from "../../components/doctors-dashboard/AppointmentsDetailsCard";
+import AppointmentRequestCard from "../../components/doctors-dashboard/AppointmentRequestCard";
+import NextAppointmentDetails from "../../components/doctors-dashboard/NextAppointmentDetails";
 
 const DoctorsDashboard = () => {
   return (

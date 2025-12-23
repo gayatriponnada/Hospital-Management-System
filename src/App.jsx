@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/nav-bar/Navbar";
-import Home from "./pages/Home";
+import Home from "./pages/patient-page/Home";
 import "./index.css";
 import Signup from "./components/login/Signup";
 import Login from "./components/login/Login";
 import Layout from "./components/nav-bar/Layout";
-import Doctors from "./pages/Doctors";
-import About from "./pages/About";
-import LabReports from "./pages/LabReports";
+import Doctors from "./pages/patient-page/AllDoctors";
+import About from "./pages/patient-page/About";
+import LabReports from "./pages/patient-page/LabReports";
 import DoctorsLayout from "./components/nav-bar/DoctorsLayout";
-import DoctorsDashboard from "./pages/DoctorsDashboard";
+import DoctorsDashboard from "./pages/doctors-page/DoctorsDashboard";
 import DoctorAppointmentDetails from "./pages/DoctorAppointmentDetails";
 
 function App() {
@@ -30,7 +30,6 @@ function App() {
             element={<LabReports />}
           />
           <Route path="/patient/dashboard/about" element={<About />} />
-          <Route path="/patient/dashboard/contact" element={<About />} />
         </Route>
         <Route element={<DoctorsLayout />}>
           <Route path="/doctor/dashboard" element={<DoctorsDashboard />} />
@@ -38,6 +37,7 @@ function App() {
             path="/doctor/appointments"
             element={<DoctorAppointmentDetails />}
           />
+          <Route path="/doctor/patient" element={}/>
         </Route>
       </Routes>
     </>
