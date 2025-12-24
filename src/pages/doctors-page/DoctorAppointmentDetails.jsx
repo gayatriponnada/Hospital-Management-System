@@ -1,6 +1,6 @@
 import React from "react";
-import CustomTable from "../utils/CustomTable";
-import { appointmentColumnsData } from "../components/doctor-appointment/AppointmentColumnsData";
+import CustomTable from "../../utils/CustomTable";
+import { appointmentColumnsData } from "../../components/doctor-appointment/AppointmentColumnsData";
 
 const DoctorAppointmentDetails = () => {
   const patientsDetails = [

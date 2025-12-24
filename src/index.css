@@ -36,11 +36,14 @@ html,
 
   /* On hover: show thin scrollbar */
   .hover-scrollbar:hover {
-    scrollbar-width: thin; /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-height: thin;
+    /* Firefox */
   }
 
   .hover-scrollbar:hover::-webkit-scrollbar {
-    width: 4px; /*  adjust thinness here */
+    width: 4px;
+    height: 4px; /*  adjust thinness here */
   }
 
   /* Scrollbar thumb */
@@ -51,7 +54,7 @@ html,
 
   /* Track */
   .hover-scrollbar:hover::-webkit-scrollbar-track {
-      background-color: transparent;
+    background-color: transparent;
   }
 }
 
@@ -67,3 +70,4 @@ select,
 button {
   font-size: 0.8rem;
 }
+

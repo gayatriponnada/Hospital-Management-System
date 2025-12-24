@@ -108,7 +108,7 @@ const AppointmentRequestCard = () => {
       <div className="text-sm font-semibold text-secondary">
         Appointment Requests
       </div>
-      <div className="bg-white rounded-lg p-4 shadow-md max-h-[59vh] overflow-auto hover-scrollbar">
+      <div className="bg-white rounded-lg p-4 shadow-md max-h-[56vh] overflow-auto hover-scrollbar">
         <div className="flex flex-col gap-2 w-full">
           {appointmentsData.map((appointment) => (
             <div

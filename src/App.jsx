@@ -10,7 +10,8 @@ import About from "./pages/patient-page/About";
 import LabReports from "./pages/patient-page/LabReports";
 import DoctorsLayout from "./components/nav-bar/DoctorsLayout";
 import DoctorsDashboard from "./pages/doctors-page/DoctorsDashboard";
-import DoctorAppointmentDetails from "./pages/DoctorAppointmentDetails";
+import PatientDetails from "./pages/doctors-page/PatientDetails";
+import DoctorAppointmentDetails from "./pages/doctors-page/DoctorAppointmentDetails";
 
 function App() {
   return (
@@ -37,7 +38,7 @@ function App() {
             path="/doctor/appointments"
             element={<DoctorAppointmentDetails />}
           />
-          <Route path="/doctor/patient" element={}/>
+          <Route path="/doctor/patient" element={<PatientDetails />} />
         </Route>
       </Routes>
     </>

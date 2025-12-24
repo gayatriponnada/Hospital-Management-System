@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 const DoctorNavbar = () => {
   return (
     <div
-      className="flex justify-between items-center  p-2 px-5 
-                    border-b border-gray-200 sticky top-0  bg-white z-10"
+      className="flex justify-between items-center  p-3  px-6
+                    border-b border-gray-200 sticky top-0  bg-white z-10 rounded-lg shadow-md"
     >
       <div className="w-40">
         <img src={assets?.logo} alt="Logo" />
@@ -38,7 +38,7 @@ const DoctorNavbar = () => {
         </div>
         <div>
           <NavLink
-            to={"/doctor/patients"}
+            to={"/doctor/patient"}
             className={({ isActive }) =>
               isActive
                 ? "border-b-2 border-primary p-1 font-semibold text-sm"

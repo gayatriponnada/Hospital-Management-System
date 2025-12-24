@@ -1,11 +1,11 @@
-import React from 'react'
-import about from "../assets/about_image.png"
+import React from "react";
+import about from "../../assets/about_image.png";
 
 const About = () => {
-	return (
+  return (
     <div>
       <div className="text-bold ">ABOUT US</div>
-      <div className='w-full flex gap-10'>
+      <div className="w-full flex gap-10">
         <img className="w-[28%]" src={about} alt="About Us" />
         <div>
           <p>
@@ -33,6 +33,6 @@ const About = () => {
       </div>
     </div>
   );
-}
+};
 
-export default About
+export default About;
