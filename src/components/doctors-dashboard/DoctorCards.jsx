@@ -1,5 +1,5 @@
 import React from "react";
-import CustomCards from "../../utils/CustomCards";
+import { CustomCards } from "../../utils/CustomCards";
 
 const DoctorCards = () => {
   return (

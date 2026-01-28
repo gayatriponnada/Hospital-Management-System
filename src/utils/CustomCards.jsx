@@ -1,6 +1,6 @@
 import React from "react";
 
-const CustomCards = ({ text1, text2, icon }) => {
+export const CustomCards = ({ text1, text2, icon }) => {
   return (
     <div className="bg-white rounded-lg w-[20%] h-[20vh] p-2 cursor-pointer shadow-md hover:shadow-lg transition-shadow duration-300">
       <div className="flex  justify-start items-center gap-8 w-full h-full p-6">
@@ -16,4 +16,23 @@ const CustomCards = ({ text1, text2, icon }) => {
   );
 };
 
-export default CustomCards;
+export const PatientCards = ({ icon, text1, text2, secondaryText }) => {
+  return (
+    <div className="bg-white rounded-lg w-[20%] h-[20vh] p-2  shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="flex flex-col gap-2 justify-center items-center">
+        <div className="">
+          <img className=" h-10" src={icon} alt="icon" />
+        </div>
+        <div className="font-normal text-sm text-neutral whitespace-nowrap">
+          {text1}
+        </div>
+        <div className="flex gap-0.5 justify-center items-center">
+          <span className=" text-neutral text-2xl font-semibold">{text2}</span>
+          <span className=" text-neutral text-xs font-semibold">
+            {secondaryText}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};

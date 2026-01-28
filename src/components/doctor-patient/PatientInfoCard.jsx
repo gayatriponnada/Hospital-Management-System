@@ -41,7 +41,7 @@ const PatientInfoCard = () => {
   ];
 
   return (
-    <div className="bg-white flex flex-col justify-start items-start gap-2 p-3 rounded-lg h-[44vh] w-[20%] ">
+    <div className="bg-white flex flex-col justify-start items-start gap-2 p-3 rounded-lg h-[46vh] w-full">
       <div className="text-lg font-semibold text-primary">Information</div>
       <div className="flex flex-col gap-2 w-full  overflow-y-auto  hover-scrollbar  ">
         {section.map((item, index) => (
