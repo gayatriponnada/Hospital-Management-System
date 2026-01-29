@@ -36,7 +36,7 @@ const PatientHealthDetails = () => {
             </div>
           </div>
           <div className="flex flex-col p-2 border-b border-base-300">
-            <div className="text-sm font-medium">Blood Glucose Level</div>
+            <div className="text-sm font-medium">Blood Glucose Level (After)</div>
             <div className=" text-normal font-bold">
               85<span className="text-xs text-secondary pl-1">mg/dl</span>
             </div>

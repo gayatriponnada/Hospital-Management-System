@@ -34,7 +34,7 @@ const VitalSignsCard = () => {
           <img className="w-12" src={oxygen_img} />
         </div>
         <div className="flex flex-col gap-1 ">
-          <div className="text-xs font-normal ">Oxygen Saturation(SpO2)</div>
+          <div className="text-xs font-normal ">Thyroid</div>
           <div className="text-sm font-bold">
             97 <span className="text-xs font-normal "> %</span>
           </div>

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import AddPrescription from "./AddPrescription";
+import CustomTable from "../../../utils/CustomTable";
+import { PrescriptionColumns } from "./PrescriptionColumns";
 
+	
 const Prescription = () => {
+		const [detailsList, setDetailsList] = useState([]);
+
   return (
-    <div className="flex flex-col justify-center gap-4 bg-white rounded-lg p-4">
+    <div className="flex flex-col justify-center gap-4 bg-white rounded-lg p-4 h-[60%] max-h-[80%] overflow-hidden">
       <div className="text-lg font-semibold text-primary">Prescription</div>
       <button
         className="flex gap-1 p-2 border-2 border-dashed border-gray-300 rounded-lg justify-center items-center cursor-pointer text-primary"
@@ -21,16 +26,17 @@ const Prescription = () => {
         Add a prescription
       </button>
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box">
+        <div className="modal-box flex flex-col gap-4">
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
           </form>
           <h3 className="font-semi-bold text-lg text-primary ">Medicines</h3>
-          <AddPrescription />
+          <AddPrescription detailsList={detailsList} setDetailsList={setDetailsList} />
         </div>
       </dialog>
+      <CustomTable columns={PrescriptionColumns()} data={detailsList} />
     </div>
   );
 };

@@ -1,15 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { PrescriptionInitialState } from "../../../context/InitialStates";
 
-const AddPrescription = () => {
+const AddPrescription = ({ detailsList, setDetailsList }) => {
+  const [prescriptionDetails, setPrescriptionDetails] = useState(
+    PrescriptionInitialState
+  );
+  useEffect(() => {
+    console.log("Updated prescription list:", detailsList);
+  }, [detailsList]);
+
   const section = [
-    { id: 1, label: "Medicine Name", placeholder:" Medicine name" },
-    { id: 2, label: "Dosage", placeholder:" Dosage" },
-    { id: 3, label: "Frequency", placeholder:" Frequency" },
-    { id: 4, label: "Duration", placeholder:" Duration" },
-    { id: 5, label: "Timing", placeholder:" Timing" },
-    { id: 6, label: "Notes", placeholder:" Notes" },
+    {
+      id: 1,
+      name: "medicineName",
+      label: "Medicine Name",
+      placeholder: " Medicine name",
+      value: prescriptionDetails?.medicineName,
+    },
+    {
+      id: 2,
+      name: "dosage",
+      label: "Dosage",
+      placeholder: " Dosage",
+      value: prescriptionDetails?.dosage,
+    },
+    {
+      id: 3,
+      name: "frequency",
+      label: "Frequency",
+      placeholder: " Frequency",
+      value: prescriptionDetails?.frequency,
+    },
+    {
+      id: 4,
+      name: "duration",
+      label: "Duration",
+      placeholder: " Duration",
+      value: prescriptionDetails?.duration,
+    },
+    {
+      id: 5,
+      name: "timing",
+      label: "Timing",
+      placeholder: " Timing",
+      value: prescriptionDetails?.timing,
+    },
+    {
+      id: 6,
+      name: "notes",
+      label: "Notes",
+      placeholder: " Notes",
+      value: prescriptionDetails?.notes,
+    },
   ];
 
+  const handleClick = () => {
+    setDetailsList((prev) => [
+      ...prev,
+      { ...prescriptionDetails, prId: `PR${prev.length + 1}`, date: new Date().toLocaleDateString() },
+    ]);
+    setPrescriptionDetails({
+      medicineName: "",
+      dosage: "",
+      frequency: "",
+      duration: "",
+      timing: "",
+      notes: "",
+    });
+    document.getElementById("my_modal_3").close();
+  };
   return (
     <div className="flex flex-wrap gap-4">
       {section.map((item) => (
@@ -19,19 +78,22 @@ const AddPrescription = () => {
             className=" input outline-none input-neutral "
             type="text"
             placeholder={item.placeholder}
+            value={item.value}
+            onChange={(e) => {
+              setPrescriptionDetails({
+                ...prescriptionDetails,
+                [item?.name]: e.target.value,
+              });
+            }}
           />
         </div>
       ))}
       <div className="flex justify-end w-full">
-        <button
-          className="btn bg-success text-white"
-          onClick={() => document.getElementById("my_modal_3").close()}
-        >
+        <button className="btn bg-success text-white" onClick={handleClick}>
           Add & Save
         </button>
       </div>
     </div>
-		
   );
 };
 
