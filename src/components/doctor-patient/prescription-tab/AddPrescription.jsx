@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { PrescriptionInitialState } from "../../../context/InitialStates";
 
-const AddPrescription = ({ detailsList, setDetailsList }) => {
-  const [prescriptionDetails, setPrescriptionDetails] = useState(
-    PrescriptionInitialState
-  );
+const AddPrescription = ({
+  detailsList,
+  setDetailsList,
+  prescriptionDetails,
+  setPrescriptionDetails,
+}) => {
   useEffect(() => {
     console.log("Updated prescription list:", detailsList);
-  }, [detailsList]);
+    console.log(" prescription list:", prescriptionDetails);
+  }, [detailsList, prescriptionDetails]);
 
   const section = [
     {
@@ -57,16 +60,21 @@ const AddPrescription = ({ detailsList, setDetailsList }) => {
   const handleClick = () => {
     setDetailsList((prev) => [
       ...prev,
-      { ...prescriptionDetails, prId: `PR${prev.length + 1}`, date: new Date().toLocaleDateString() },
+      {
+        ...prescriptionDetails,
+        prId: `PR${prev.length + 1}`,
+        date: new Date().toLocaleDateString(),
+      },
     ]);
-    setPrescriptionDetails({
-      medicineName: "",
-      dosage: "",
-      frequency: "",
-      duration: "",
-      timing: "",
-      notes: "",
-    });
+    setPrescriptionDetails(prescriptionDetails);
+    // setPrescriptionDetails({
+    //   medicineName: "",
+    //   dosage: "",
+    //   frequency: "",
+    //   duration: "",
+    //   timing: "",
+    //   notes: "",
+    // });
     document.getElementById("my_modal_3").close();
   };
   return (

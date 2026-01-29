@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import AddPrescription from "./AddPrescription";
 import CustomTable from "../../../utils/CustomTable";
 import { PrescriptionColumns } from "./PrescriptionColumns";
+import PrescriptionData from "./PrescriptionData";
+import { PrescriptionInitialState } from "../../../context/InitialStates";
 
-	
 const Prescription = () => {
-		const [detailsList, setDetailsList] = useState([]);
-
+  const [detailsList, setDetailsList] = useState([]);
+  const [prescriptionDetails, setPrescriptionDetails] = useState(
+    PrescriptionInitialState
+  );
   return (
     <div className="flex flex-col justify-center gap-4 bg-white rounded-lg p-4 h-[60%] max-h-[80%] overflow-hidden">
       <div className="text-lg font-semibold text-primary">Prescription</div>
@@ -33,10 +36,19 @@ const Prescription = () => {
             </button>
           </form>
           <h3 className="font-semi-bold text-lg text-primary ">Medicines</h3>
-          <AddPrescription detailsList={detailsList} setDetailsList={setDetailsList} />
+          <AddPrescription
+            detailsList={detailsList}
+            setDetailsList={setDetailsList}
+            prescriptionDetails={prescriptionDetails}
+            setPrescriptionDetails={setPrescriptionDetails}
+          />
         </div>
       </dialog>
       <CustomTable columns={PrescriptionColumns()} data={detailsList} />
+      <PrescriptionData
+        detailsList={detailsList}
+        prescriptionDetails={prescriptionDetails}
+      />
     </div>
   );
 };
