@@ -1,14 +1,14 @@
-export const PrescriptionColumns = () => [
+export const PrescriptionColumns = (onPrIdClick) => [
   {
     key: "prId",
     label: "Prescription ID",
-    render: (item) => (
-      <div
-        className="btn font-semibold text-info underline cursor-pointer"
-        onClick={() => document?.getElementById("my_modal_4")?.showModal()}
+     render: (item) => (
+      <button
+        className="text-blue-600 underline cursor-pointer"
+        onClick={() => onPrIdClick(item)}
       >
         {item.prId}
-      </div>
+      </button>
     ),
   },
   {

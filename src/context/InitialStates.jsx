@@ -2,13 +2,13 @@ import { createContext, useContext } from "react";
 
 export const PrescriptionInitialState = {
   medicineName: "",
-  dosage: "",
-  frequency: "",
-  duration: "",
+  dosage: null,
+  frequency: null,
+  duration: null,
   timing: "",
   notes: "",
-  prId: "",
-  date: "",
+  prId: null,
+  date: null,
 };
 
 const InitialStates = createContext();

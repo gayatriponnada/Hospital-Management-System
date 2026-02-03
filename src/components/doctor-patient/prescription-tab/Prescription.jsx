@@ -10,8 +10,9 @@ const Prescription = () => {
   const [prescriptionDetails, setPrescriptionDetails] = useState(
     PrescriptionInitialState
   );
+  const[selectedPrescription, setSelectedPrescription]=useState(null)
   return (
-    <div className="flex flex-col justify-center gap-4 bg-white rounded-lg p-4 h-[60%] max-h-[80%] overflow-hidden">
+    <div className="flex flex-col justify-start gap-4 bg-white rounded-lg p-4 w-full max-h-[52vh] overflow-auto ">
       <div className="text-lg font-semibold text-primary">Prescription</div>
       <button
         className="flex gap-1 p-2 border-2 border-dashed border-gray-300 rounded-lg justify-center items-center cursor-pointer text-primary"
@@ -44,11 +45,17 @@ const Prescription = () => {
           />
         </div>
       </dialog>
-      <CustomTable columns={PrescriptionColumns()} data={detailsList} />
-      <PrescriptionData
-        detailsList={detailsList}
-        prescriptionDetails={prescriptionDetails}
-      />
+    <CustomTable
+  columns={PrescriptionColumns((prescription) => {
+    setSelectedPrescription(prescription);
+    document.getElementById("my_modal_4").showModal();
+  })}
+  data={detailsList}
+/>
+
+<PrescriptionData prescription={selectedPrescription} />
+
+      
     </div>
   );
 };

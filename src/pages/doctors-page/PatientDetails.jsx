@@ -9,9 +9,9 @@ const PatientDetails = () => {
       <div className="text-xl text-secondary font-semibold">
         Current Appointment
       </div>
-      <div className="flex gap-6 w-full">
+      <div className="flex gap-6 w-full ">
         <PatientProfileCard />
-        <div className="flex flex-col gap-6 w-[70%]">
+        <div className="flex flex-col gap-6 w-[70%] ">
           <PatientHealthCards />
           <Prescription/>
         </div>

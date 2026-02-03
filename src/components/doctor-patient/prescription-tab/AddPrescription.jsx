@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { PrescriptionInitialState } from "../../../context/InitialStates";
+import { supabase } from "../../../config/supabaseClient";
 
 const AddPrescription = ({
   detailsList,
@@ -19,6 +20,7 @@ const AddPrescription = ({
       label: "Medicine Name",
       placeholder: " Medicine name",
       value: prescriptionDetails?.medicineName,
+      type: "text",
     },
     {
       id: 2,
@@ -26,6 +28,7 @@ const AddPrescription = ({
       label: "Dosage",
       placeholder: " Dosage",
       value: prescriptionDetails?.dosage,
+      type: "number",
     },
     {
       id: 3,
@@ -33,6 +36,7 @@ const AddPrescription = ({
       label: "Frequency",
       placeholder: " Frequency",
       value: prescriptionDetails?.frequency,
+      type: "number",
     },
     {
       id: 4,
@@ -40,6 +44,7 @@ const AddPrescription = ({
       label: "Duration",
       placeholder: " Duration",
       value: prescriptionDetails?.duration,
+      type: "number",
     },
     {
       id: 5,
@@ -47,6 +52,7 @@ const AddPrescription = ({
       label: "Timing",
       placeholder: " Timing",
       value: prescriptionDetails?.timing,
+      type: "text",
     },
     {
       id: 6,
@@ -54,29 +60,64 @@ const AddPrescription = ({
       label: "Notes",
       placeholder: " Notes",
       value: prescriptionDetails?.notes,
+      type: "text",
     },
   ];
 
-  const handleClick = () => {
-    setDetailsList((prev) => [
-      ...prev,
-      {
-        ...prescriptionDetails,
-        prId: `PR${prev.length + 1}`,
-        date: new Date().toLocaleDateString(),
-      },
-    ]);
-    setPrescriptionDetails(prescriptionDetails);
-    // setPrescriptionDetails({
-    //   medicineName: "",
-    //   dosage: "",
-    //   frequency: "",
-    //   duration: "",
-    //   timing: "",
-    //   notes: "",
-    // });
+
+
+useEffect(() => {
+  const fetchPrescriptions = async () => {
+    const { data, error } = await supabase
+      .from("prescriptionData")
+      .select();
+
+    if (error) {
+      console.error("Supabase error:", error);
+    } else {
+      setDetailsList(data);
+      console.log("Grouped prescriptions:", data);
+    }
+  };
+
+  fetchPrescriptions();
+}, []);
+
+
+
+  const handleClick = async() => {
+   const newPrescription = {
+    ...prescriptionDetails,
+    prId: `PR${detailsList.length + 1}`,
+    date: new Date().toLocaleDateString(),
+  };
+
+  const { data, error } = await supabase
+    .from("prescriptionData")
+    .insert([newPrescription])
+    .select();
+
+  if (error) {
+    console.error("Insert error:", error);
+    return;
+  }
+  setDetailsList((prev) => [...prev, ...data]);
+    setPrescriptionDetails({
+      ...prescriptionDetails,
+      prId: `PR${detailsList.length + 1}`,
+      date: new Date().toLocaleDateString(),
+    });
+    setPrescriptionDetails({
+      medicineName: "",
+      dosage: "",
+      frequency: "",
+      duration: "",
+      timing: "",
+      notes: "",
+    });
     document.getElementById("my_modal_3").close();
   };
+
   return (
     <div className="flex flex-wrap gap-4">
       {section.map((item) => (
@@ -84,7 +125,7 @@ const AddPrescription = ({
           <label className="text-sm text-gray-600">{item.label}</label>
           <input
             className=" input outline-none input-neutral "
-            type="text"
+            type={item?.type}
             placeholder={item.placeholder}
             value={item.value}
             onChange={(e) => {
