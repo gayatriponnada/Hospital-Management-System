@@ -1,7 +1,7 @@
 import React from "react";
 import PatientProfileCard from "../../components/doctor-patient/PatientProfileCard";
-import PatientHealthCards from "../../components/doctor-patient/patient-health-cards/PatientHealthCards";
 import Prescription from "../../components/doctor-patient/prescription-tab/Prescription";
+import PatientHealthCards from "../../components/doctor-patient/patient-health-cards/PatientHaelthCards";
 
 const PatientDetails = () => {
   return (
