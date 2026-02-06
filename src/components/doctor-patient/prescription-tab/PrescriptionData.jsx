@@ -11,24 +11,47 @@ const PrescriptionData = ({ prescription }) => {
             ✕
           </button>
         </form>
-        <h3 className="font-bold text-lg mb-4">Prescription Details</h3>
-        <div>
-          <div>Prescription Id</div>
-          <div>{prescription?.prId}</div>
-        </div>
-       <div className="space-y-4">
-          
-              <div><strong>Medicine Name:</strong> {prescription?.medicineName}</div>
-              <div><strong>Dosage:</strong> {prescription?.dosage}</div>
-              <div><strong>Frequency:</strong> {prescription?.frequency}</div>
-              <div><strong>Duration:</strong> {prescription?.duration}</div>
-              <div><strong>Timing:</strong> {prescription?.timing}</div>
-              <div><strong>Notes:</strong> {prescription?.notes}</div>
+        <div className="flex flex-col gap-4">
+          <h3 className="font-bold text-lg mb-4">Prescription Details</h3>
+          <div className="flex flex-col">
+            <div className="flex flex-row w-full justify-start gap-4">
+              <div className="w-[30%]">Prescription Id</div>
+              <span>:</span>
+              <div>{prescription?.prId}</div>
             </div>
-         
-      
+            <div className="flex flex-row justify-start gap-4 ">
+              <div className="w-[30%]">Medicine Name</div>
+              <span>:</span>
+              <div>{prescription?.medicineName}</div>
+            </div>
+            <div className="flex flex-row justify-start gap-4">
+              <div className="w-[30%]">Dosage</div>
+              <span>:</span>
+              <div>{prescription?.dosage}</div>
+            </div>
+
+            <div className="flex flex-row justify-start gap-4">
+              <div className="w-[30%]">Frequency</div>
+              <span>:</span>
+              <div>{prescription?.frequency}</div>
+            </div>
+            <div className="flex flex-row justify-start gap-4">
+              <div className="w-[30%]">Duration</div>
+              <span>:</span>
+              <div>{prescription?.duration}</div>
+            </div>
+            <div className="flex flex-row justify-start gap-4">
+              <div className="w-[30%]">Timing</div>
+              <span>:</span>
+              <div>{prescription?.timing}</div>
+            </div>
+            <div className="flex flex-row justify-start gap-4">
+              <div className="w-[30%]">Notes</div> <span>:</span>
+              <div>{prescription?.notes}</div>
+            </div>
+          </div>
+        </div>
       </div>
-      
     </dialog>
   );
 };
