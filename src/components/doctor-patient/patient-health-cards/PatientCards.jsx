@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { supabase } from "../../../config/supabaseClient";
+import HeartAndHealthDetails from "./HeartandHealthDetails";
 
 export const PatientCards = ({
   data,
@@ -77,38 +78,48 @@ export const PatientCards = ({
           <span className="text-xs font-semibold">{unit}</span>
         </div>
 
-        <dialog
-          id={`my_modal_${id}`}
-          className="modal modal-bottom sm:modal-middle"
-        >
-          <div className="modal-box">
-            <form method="dialog">
-              <button className="btn btn-sm btn-circle absolute right-2 top-2">
-                ✕
+        {id == 6 ? (
+          <HeartAndHealthDetails
+            data={data}
+            patientHealthDetails={patientHealthDetails}
+            setPatientHealthDetails={setPatientHealthDetails}
+            handleDetails={handleDetails}
+            handleUpdate={handleUpdate}
+          />
+        ) : (
+          <dialog
+            id={`my_modal_${id}`}
+            className="modal modal-bottom sm:modal-middle"
+          >
+            <div className="modal-box">
+              <form method="dialog">
+                <button className="btn btn-sm btn-circle absolute right-2 top-2">
+                  ✕
+                </button>
+              </form>
+
+              <h3 className="font-semi-bold text-lg text-primary ">{type}</h3>
+
+              <input
+                className="input outline-none input-neutral w-full"
+                value={patientHealthDetails?.[name]}
+                placeholder={placeholder}
+                onChange={(e) => {
+                  setPatientHealthDetails({
+                    ...patientHealthDetails,
+                    [name]: e.target.value,
+                  });
+                }}
+              />
+              <button className="btn" onClick={handleDetails}>
+                Save
               </button>
-            </form>
-
-            <h3 className="text-lg font-semibold text-primary">{type}</h3>
-
-            <input
-              className="input input-bordered w-full mt-4"
-              value={patientHealthDetails?.[name]}
-              placeholder={placeholder}
-              onChange={(e) => {
-                setPatientHealthDetails({
-                  ...patientHealthDetails,
-                  [name]: e.target.value,
-                });
-              }}
-            />
-            <button className="btn" onClick={handleDetails}>
-              Save
-            </button>
-            <button className="btn" onClick={handleUpdate}>
-              Update
-            </button>
-          </div>
-        </dialog>
+              <button className="btn" onClick={handleUpdate}>
+                Update
+              </button>
+            </div>
+          </dialog>
+        )}
       </div>
     </div>
   );

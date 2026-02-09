@@ -29,12 +29,15 @@ const PatientHealthDetails = ({ patientHealthDetails }) => {
           </div>
           <div className="flex flex-col p-2 border-b border-base-300">
             <div className="text-sm font-medium">Blood count</div>
-            <div className=" text-normal font-bold">80-90</div>
+            <div className=" text-normal font-bold">
+              {" "}
+              {patientHealthDetails?.bloodCount}
+            </div>
           </div>
           <div className="flex flex-col p-2 border-b border-base-300">
             <div className="text-sm font-medium">Cholesterol</div>
             <div className=" text-normal font-bold">
-              225<span className="text-xs text-secondary pl-1">mg/dl</span>
+              {patientHealthDetails?.cholesterol}<span className="text-xs text-secondary pl-1">mg/dl</span>
             </div>
           </div>
           <div className="flex flex-col p-2 border-b border-base-300">
