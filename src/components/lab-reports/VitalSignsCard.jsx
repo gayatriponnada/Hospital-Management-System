@@ -3,7 +3,7 @@ import blood_pressure from "../../assets/blood_pressure.png";
 import body_temp_img from "../../assets/body_temp_img.png";
 import oxygen_img from "../../assets/oxygen _img.png";
 
-const VitalSignsCard = () => {
+const VitalSignsCard = ({ patientHealthDetails }) => {
   return (
     <div className="flex flex-col bg-white h-full p-4 rounded-lg shadow-md">
       <div className=" text-sm font-semibold text-primary">Vital Signs</div>
@@ -14,7 +14,8 @@ const VitalSignsCard = () => {
         <div className="flex flex-col gap-1  ">
           <div className="text-xs font-normal ">Blood Pressure</div>
           <div className="text-sm font-bold">
-            120/80 <span className="text-xs font-normal "> mmHg</span>
+            {patientHealthDetails?.bloodPressure}{" "}
+            <span className="text-xs font-normal "> mmHg</span>
           </div>
         </div>
       </div>
@@ -25,7 +26,8 @@ const VitalSignsCard = () => {
         <div className="flex flex-col gap-1 ">
           <div className="text-xs font-normal ">Body Temperature</div>
           <div className="text-sm font-bold">
-            36.6 <span className="text-xs font-normal "> °C</span>
+            {patientHealthDetails?.bodyTemperature}{" "}
+            <span className="text-xs font-normal "> °C</span>
           </div>
         </div>
       </div>
@@ -36,7 +38,7 @@ const VitalSignsCard = () => {
         <div className="flex flex-col gap-1 ">
           <div className="text-xs font-normal ">Thyroid</div>
           <div className="text-sm font-bold">
-            97 <span className="text-xs font-normal "> %</span>
+            {patientHealthDetails?.Thyroid} <span className="text-xs font-normal "> %</span>
           </div>
         </div>
       </div>

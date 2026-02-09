@@ -3,7 +3,7 @@ import heart_img from "../../assets/heart_img.png";
 import heart_rate_img from "../../assets/heart_rate_img.png";
 import heart_pluse_img from "../../assets/heart_pluse_img.jpg";
 
-const PatientHealthDetails = () => {
+const PatientHealthDetails = ({ patientHealthDetails }) => {
   return (
     <div className="bg-white w-[40%] p-4 rounded-lg shadow-md flex flex-col gap-4 h-full">
       <div className="text-sm font-bold text-primary">Heart Status</div>
@@ -18,7 +18,9 @@ const PatientHealthDetails = () => {
               />
               <div className="w-full">
                 <div className="text-xs font-medium">Heart Rate</div>
-                <div className=" text-normal font-bold">74 bpm</div>
+                <div className=" text-normal font-bold">
+                  {patientHealthDetails?.heartRate}
+                </div>
               </div>
             </div>
             <div className="bg-white w-full rounded-lg">
@@ -36,15 +38,19 @@ const PatientHealthDetails = () => {
             </div>
           </div>
           <div className="flex flex-col p-2 border-b border-base-300">
-            <div className="text-sm font-medium">Blood Glucose Level (After)</div>
+            <div className="text-sm font-medium">
+              Blood Glucose Level (After)
+            </div>
             <div className=" text-normal font-bold">
-              85<span className="text-xs text-secondary pl-1">mg/dl</span>
+              {patientHealthDetails?.bloodGlucoseLevelAfter}
+              <span className="text-xs text-secondary pl-1">mg/dl</span>
             </div>
           </div>
           <div className="flex flex-col p-2">
             <div className="text-sm font-medium">Saturation</div>
             <div className=" text-normal font-bold">
-              83<span className="text-xs text-secondary pl-1">%</span>
+              {patientHealthDetails?.saturation}
+              <span className="text-xs text-secondary pl-1">%</span>
             </div>
           </div>
         </div>

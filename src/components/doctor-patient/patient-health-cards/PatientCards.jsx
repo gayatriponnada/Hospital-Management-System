@@ -1,5 +1,51 @@
-export const PatientCards = ({ data }) => {
-  const { id, type, label, value, unit, placeholder, icon } = data || {};
+import { useEffect } from "react";
+import { supabase } from "../../../config/supabaseClient";
+
+export const PatientCards = ({
+  data,
+  handleDetails,
+  setPatientHealthDetails,
+  patientHealthDetails,
+}) => {
+  const { id, type, label, unit, placeholder, icon, name } = data || {};
+
+  useEffect(() => {
+    const fetchHealthDetails = async () => {
+      const { data, error } = await supabase
+        .from("HealthDetails")
+        .select()
+        .single();
+      if (error) {
+        console.error("Supabase error:", error);
+      } else {
+        setPatientHealthDetails(data);
+        console.log("patientHealthDetails?.[name]", patientHealthDetails);
+      }
+    };
+    fetchHealthDetails();
+  }, []);
+
+  const handleUpdate = async () => {
+    if (!patientHealthDetails?.id) {
+      console.error("Update skipped: missing ID");
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from("HealthDetails")
+      .update(patientHealthDetails)
+      .eq("id", patientHealthDetails?.id)
+      .select()
+      .single();
+    document.getElementById(`my_modal_${id}`).close();
+
+    if (error) {
+      console.error("Update error:", error);
+      return;
+    }
+
+    setPatientHealthDetails(data);
+  };
 
   return (
     <div className="bg-white rounded-lg w-[20%] h-[20vh] p-2 shadow-md hover:shadow-lg">
@@ -25,7 +71,9 @@ export const PatientCards = ({ data }) => {
         <div className="text-sm text-neutral">{label}</div>
 
         <div className="flex items-center gap-1">
-          <span className="text-2xl font-semibold">{value}</span>
+          <div className="text-2xl font-semibold">
+            {patientHealthDetails?.[name]}
+          </div>
           <span className="text-xs font-semibold">{unit}</span>
         </div>
 
@@ -44,8 +92,21 @@ export const PatientCards = ({ data }) => {
 
             <input
               className="input input-bordered w-full mt-4"
+              value={patientHealthDetails?.[name]}
               placeholder={placeholder}
+              onChange={(e) => {
+                setPatientHealthDetails({
+                  ...patientHealthDetails,
+                  [name]: e.target.value,
+                });
+              }}
             />
+            <button className="btn" onClick={handleDetails}>
+              Save
+            </button>
+            <button className="btn" onClick={handleUpdate}>
+              Update
+            </button>
           </div>
         </dialog>
       </div>
