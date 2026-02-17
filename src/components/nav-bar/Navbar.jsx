@@ -1,13 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { assets } from "../../assets/assets";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+// import { useAuth } from "../../context/AuthContext";
+import { supabase } from "../../config/supabaseClient";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const [userDetails, setUserDetails] = useState(null);
 
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        // Get current logged-in user
+        const {
+          data: { user },
+          error: userError,
+        } = await supabase.auth.getUser();
+
+        if (userError || !user) {
+          console.log("No logged-in user or error:", userError);
+          return;
+        }
+
+        //  Fetch profile from Profiles table
+        const { data, error } = await supabase
+          .from("Profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
+
+        if (error) {
+          console.log("Error fetching user details:", error);
+        } else {
+          setUserDetails(data);
+          console.log("User details:", data);
+        }
+      } catch (err) {
+        console.log("Unexpected error:", err);
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
   return (
     <div
       className="flex justify-between items-center  p-3 px-6
@@ -79,30 +115,37 @@ const Navbar = () => {
           className="avatar avatar-placeholder cursor-pointer"
         >
           <div className="bg-neutral text-neutral-content w-8 rounded-full">
-            <span className="text-lg">{user?.email?.[0]}</span>
+            <span className="text-lg">{userDetails?.fullname?.[0]}</span>
           </div>
         </button>
 
         <div className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-60 min-h-40">
-          {user ? (
+          {userDetails  ? (
             <div className="flex flex-col gap-3">
               <span className="text-center">
                 Welcome
                 <span className="text-sm font-bold text-primary">
                   {" "}
-                  {user?.fullname},
+                  {userDetails?.fullname},
                 </span>
               </span>
               <div className="flex flex-col gap-2">
                 <div className="flex justify-start gap-4">
                   <span className="font-bold w-[15%]">Email</span>
-                  <span>{user?.email}</span>
+                  <span>{userDetails?.email}</span>
                 </div>
                 <div className="flex justify-start gap-4">
                   <span className="font-bold w-[15%]">Role</span>
-                  <span>{user?.role}</span>
+                  <span>{userDetails?.role}</span>
                 </div>
-                <button className="btn" onClick={() => navigate("/login")}>
+                <button
+                  className="btn"
+                  onClick={async () => {
+                    await supabase.auth.signOut();
+                    setUserDetails(null);
+                    navigate("/login");
+                  }}
+                >
                   Logout
                 </button>
               </div>

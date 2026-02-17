@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext.jsx";
 import about from "../../assets/about_image.png";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../../config/supabaseClient.jsx";
 
 const Login = () => {
-  const { login } = useAuth();
   const [details, setDetails] = useState({
     email: "",
     password: "",
@@ -38,25 +38,44 @@ const Login = () => {
     return Object.keys(newError).length === 0;
   };
 
-  const handleLogin = () => {
-    if (validate()) {
-      login({
+  const handleLogin = async () => {
+    if (!validate) {
+      return;
+    }
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: details.email,
         password: details.password,
-        role: details.role,
       });
 
-      if (details.role === "admin") {
+      if (error) throw error;
+
+      // If login successful, you can access the user
+      const user = data.user;
+      console.log("Logged in user:", user);
+
+      // 2️⃣ Fetch additional profile details if needed
+      const { data: profile, error: profileError } = await supabase
+        .from("Profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
+
+      if (profileError) throw profileError;
+
+      console.log("Profile details:", profile);
+
+      // 3️⃣ Role-based navigation
+      if (profile.role === "admin") {
         navigate("/admin/dashboard");
-        return;
-      } else if (details.role === "doctor") {
+      } else if (profile.role === "doctor") {
         navigate("/doctor/dashboard");
-        return;
-      } else if (details.role === "patient") {
+      } else {
         navigate("/");
-        return;
       }
-      return;
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Login failed");
     }
   };
 

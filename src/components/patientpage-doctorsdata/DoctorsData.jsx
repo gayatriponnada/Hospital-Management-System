@@ -1,22 +1,37 @@
 import React, { useEffect, useRef, useState } from "react";
 import { doctors } from "../../assets/assets";
+import { bookAppointmentDetails } from "../../context/InitialStates";
+import { supabase } from "../../config/supabaseClient";
 
 const DoctorsData = ({ id }) => {
   const [open, setOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
 
-  const [appointmentDetails, setAppointmentDetails] = useState({
-    appointmentType: "",
-    physician: "",
-    note: "",
-    date: "",
-  });
+  const [appointmentDetails, setAppointmentDetails] = useState(
+    bookAppointmentDetails,
+  );
+  // const [appointmentDetails, setAppointmentDetails] = useState({
+  //   appointmentType: "",
+  //   doctorName: "",
+  //   patientNote: "",
+  //   date: "",
+  // });
 
-  const handleAppointment = () => {
+  const handleAppointment = async () => {
+    const { data, error } = await supabase
+      .from("BookAppointment")
+      .insert(appointmentDetails)
+      .select();
+    if (data) {
+      setAppointmentDetails(data);
+    } else {
+      console.log("error", error);
+    }
+
     if (
       appointmentDetails.appointmentType &&
-      appointmentDetails.physician &&
+      appointmentDetails.doctorName &&
       appointmentDetails.date
     ) {
       setShowToast(true);
@@ -32,7 +47,7 @@ const DoctorsData = ({ id }) => {
 
   const speciality = id;
   const filteredDoctors = doctors.filter(
-    (doctor) => doctor.speciality === speciality
+    (doctor) => doctor.speciality === speciality,
   );
 
   const selectedDate = useRef(null);
@@ -44,7 +59,7 @@ const DoctorsData = ({ id }) => {
         const selectedDate = e.target.value;
         setAppointmentDetails((prev) => ({
           ...prev,
-          date: selectedDate,
+          appointmentDate: selectedDate,
         }));
       };
       calendarElement.addEventListener("change", handleChange);
@@ -54,6 +69,8 @@ const DoctorsData = ({ id }) => {
       };
     }
   }, []);
+
+
 
   return (
     <div className="drawer drawer-end ">
@@ -65,7 +82,7 @@ const DoctorsData = ({ id }) => {
         onChange={(e) => setOpen(e.target.checked)}
       />
       <div className="drawer-content">
-        <div className=" flex flex-wrap  items-center justify-start gap-4   ">
+        <div className=" flex flex-wrap items-center justify-start gap-4   ">
           {(speciality ? filteredDoctors : doctors).map((doctor, index) => (
             <label
               htmlFor="my-drawer-5"
@@ -74,9 +91,9 @@ const DoctorsData = ({ id }) => {
               onClick={() => {
                 setAppointmentDetails({
                   appointmentType: "",
-                  physician: doctor.name,
-                  note: "",
-                  date: "",
+                  doctorName: doctor.name,
+                  patientNote: "",
+                  appointmentDate: "",
                 });
               }}
             >
@@ -149,28 +166,28 @@ const DoctorsData = ({ id }) => {
                 onChange={(e) =>
                   setAppointmentDetails((prev) => ({
                     ...prev,
-                    physician: e.target.value,
+                    doctorName: e.target.value,
                   }))
                 }
-                value={appointmentDetails.physician || ""}
+                value={appointmentDetails.doctorName || ""}
               >
                 {(speciality ? filteredDoctors : doctors).map(
                   (doctor, index) => (
                     <option key={index} value={doctor.name}>
                       {doctor.name}
                     </option>
-                  )
+                  ),
                 )}
               </select>
             </div>
             <div className="flex flex-col gap-2 p-2">
               <label>Note</label>
               <textarea
-                value={appointmentDetails?.note}
+                value={appointmentDetails?.patientNote}
                 onChange={(e) => {
                   setAppointmentDetails((prev) => ({
                     ...prev,
-                    note: e.target.value,
+                    patientNote: e.target.value,
                   }));
                 }}
                 className="textarea textarea-primary"
@@ -182,7 +199,7 @@ const DoctorsData = ({ id }) => {
                 Select Date:{" "}
                 <span className="text-sm text-primary font-medium">
                   {" "}
-                  {appointmentDetails.date}
+                  {appointmentDetails.appointmentDate}
                 </span>
               </label>
 

@@ -23,10 +23,32 @@ export const HealthDetails = {
   Thyroid: null,
 };
 
+export const bookAppointmentDetails = {
+  appointmentId: "",
+  patientId: "",
+  patientName: "",
+  patientAge: null,
+  patientGender: "",
+  doctorId: "",
+  doctorName: "",
+  specialization: "",
+  appointmentType: "",
+  appointmentDate: null,
+  appointmentTime: "",
+  patientNote: "",
+  status: "",
+};
+
 const InitialStates = createContext();
 export const InitialStatesProvider = ({ children }) => {
   return (
-    <InitialStates.Provider value={{ PrescriptionInitialState, HealthDetails }}>
+    <InitialStates.Provider
+      value={{
+        PrescriptionInitialState,
+        HealthDetails,
+        bookAppointmentDetails,
+      }}
+    >
       {children}
     </InitialStates.Provider>
   );

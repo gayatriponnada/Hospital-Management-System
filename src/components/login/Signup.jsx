@@ -1,12 +1,9 @@
 import { useState } from "react";
 import about from "../../assets/about_image.png";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import axios from "axios";
+import { supabase } from "../../config/supabaseClient";
 
 const Signup = () => {
-  const { login } = useAuth();
-
   const [details, setDetails] = useState({
     fullname: "",
     email: "",
@@ -60,45 +57,42 @@ const Signup = () => {
     return Object.keys(newError).length === 0;
   };
 
-  const registerUser = async () => {
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/users`,
-        {
-          fullname: details?.fullname,
-          email: details?.email,
-          password: details?.password,
-          role: details?.role,
-          gender: details?.gender,
-          contactNumber: details?.contactNumber,
-          address: details?.address,
-          dob: details?.dob,
-        }
-      );
-      console.log("User created:", response.data);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    }
-  };
-
   const handleRegister = async () => {
     if (!validate()) return;
 
     try {
-      const user = await registerUser();
-      login(user);
+      // 1️⃣ Signup with Supabase Auth
+      const { data, error } = await supabase.auth.signUp({
+        email: details.email,
+        password: details.password,
+      });
 
-      // role-based navigation
-      if (user.role === "admin") {
+      if (error) throw error;
+
+      const userId = data.user.id;
+
+      // 2️⃣ Insert extra details into profiles table
+      const { error: profileError } = await supabase.from("Profiles").insert({
+        id: userId,
+        fullname: details.fullname,
+        role: details.role,
+        gender: details.gender,
+        dob: details.dob,
+        contactNumber: details.contactNumber,
+        address: details.address,
+      });
+
+      // 3️⃣ Role-based navigation
+      if (details.role === "admin") {
         navigate("/admin/dashboard");
-      } else if (user.role === "doctor") {
+      } else if (details.role === "doctor") {
         navigate("/doctor/dashboard");
       } else {
         navigate("/");
       }
-    } catch (error) {
-      alert("Registration failed");
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Registration failed");
     }
   };
 
