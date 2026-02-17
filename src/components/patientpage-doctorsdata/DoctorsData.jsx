@@ -3,6 +3,7 @@ import { doctors } from "../../assets/assets";
 import { bookAppointmentDetails } from "../../context/InitialStates";
 import { supabase } from "../../config/supabaseClient";
 
+
 const DoctorsData = ({ id }) => {
   const [open, setOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -11,6 +12,8 @@ const DoctorsData = ({ id }) => {
   const [appointmentDetails, setAppointmentDetails] = useState(
     bookAppointmentDetails,
   );
+
+ 
   // const [appointmentDetails, setAppointmentDetails] = useState({
   //   appointmentType: "",
   //   doctorName: "",
@@ -32,7 +35,7 @@ const DoctorsData = ({ id }) => {
     if (
       appointmentDetails.appointmentType &&
       appointmentDetails.doctorName &&
-      appointmentDetails.date
+      appointmentDetails.appointmentDate
     ) {
       setShowToast(true);
 
@@ -69,8 +72,6 @@ const DoctorsData = ({ id }) => {
       };
     }
   }, []);
-
-
 
   return (
     <div className="drawer drawer-end ">

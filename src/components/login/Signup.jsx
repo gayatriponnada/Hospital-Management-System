@@ -2,8 +2,10 @@ import { useState } from "react";
 import about from "../../assets/about_image.png";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../config/supabaseClient";
+import { useAuth } from "../../context/AuthContext";
 
 const Signup = () => {
+  const { signup } = useAuth();
   const [details, setDetails] = useState({
     fullname: "",
     email: "",
@@ -61,38 +63,9 @@ const Signup = () => {
     if (!validate()) return;
 
     try {
-      // 1️⃣ Signup with Supabase Auth
-      const { data, error } = await supabase.auth.signUp({
-        email: details.email,
-        password: details.password,
-      });
-
-      if (error) throw error;
-
-      const userId = data.user.id;
-
-      // 2️⃣ Insert extra details into profiles table
-      const { error: profileError } = await supabase.from("Profiles").insert({
-        id: userId,
-        fullname: details.fullname,
-        role: details.role,
-        gender: details.gender,
-        dob: details.dob,
-        contactNumber: details.contactNumber,
-        address: details.address,
-      });
-
-      // 3️⃣ Role-based navigation
-      if (details.role === "admin") {
-        navigate("/admin/dashboard");
-      } else if (details.role === "doctor") {
-        navigate("/doctor/dashboard");
-      } else {
-        navigate("/");
-      }
+      await signup(details);
     } catch (err) {
-      console.error(err);
-      alert(err.message || "Registration failed");
+      alert(err.message);
     }
   };
 
