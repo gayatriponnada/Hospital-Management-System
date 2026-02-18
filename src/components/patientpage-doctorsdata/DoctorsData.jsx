@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { doctors } from "../../assets/assets";
 import { bookAppointmentDetails } from "../../context/InitialStates";
 import { supabase } from "../../config/supabaseClient";
-
+import { useAuth } from "../../context/AuthContext";
 
 const DoctorsData = ({ id }) => {
+  const { profile } = useAuth();
   const [open, setOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
@@ -13,7 +14,6 @@ const DoctorsData = ({ id }) => {
     bookAppointmentDetails,
   );
 
- 
   // const [appointmentDetails, setAppointmentDetails] = useState({
   //   appointmentType: "",
   //   doctorName: "",
@@ -22,9 +22,16 @@ const DoctorsData = ({ id }) => {
   // });
 
   const handleAppointment = async () => {
+    const updatedAppointment = {
+      ...appointmentDetails,
+      patientId: profile?.id,
+      patientName: profile?.fullname,
+      patientGender: profile?.gender,
+    };
+
     const { data, error } = await supabase
       .from("BookAppointment")
-      .insert(appointmentDetails)
+      .insert(updatedAppointment)
       .select();
     if (data) {
       setAppointmentDetails(data);

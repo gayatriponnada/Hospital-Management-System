@@ -25,7 +25,7 @@ export const HealthDetails = {
 
 export const bookAppointmentDetails = {
   appointmentId: "",
-  patientId: "",
+  patientId: null,
   patientName: "",
   patientAge: null,
   patientGender: "",
