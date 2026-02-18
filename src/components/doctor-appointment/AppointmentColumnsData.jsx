@@ -16,15 +16,15 @@ export const appointmentColumnsData = () => [
     label: "Date & Time",
     render: (item) => (
       <div className="flex flex-col gap-2">
-        <div className="text-neutral">{item.date}</div>
-        <span className="badge badge-ghost badge-sm">{item.time}</span>
+        <div className="text-neutral">{item.appointmentDate}</div>
+        <span className="badge badge-ghost badge-sm">{item.appointmentTime}</span>
       </div>
     ),
   },
   {
     key: "reason",
     label: "Reason",
-    render: (item) => <div className="text-neutral">{item.reason}</div>,
+    render: (item) => <div className="text-neutral">{item.patientNote}</div>,
   },
   {
     key: "status",

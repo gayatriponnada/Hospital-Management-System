@@ -14,12 +14,19 @@ const DoctorsData = ({ id }) => {
     bookAppointmentDetails,
   );
 
+  const speciality = id;
+  const filteredDoctors = doctors.filter(
+    (doctor) => doctor.speciality === speciality,
+  );
+
+  console.log(speciality);
   const handleAppointment = async () => {
     const updatedAppointment = {
       ...appointmentDetails,
       patientId: profile?.id,
       patientName: profile?.fullname,
       patientGender: profile?.gender,
+      // specialization:
     };
 
     const { data, error } = await supabase
@@ -47,11 +54,6 @@ const DoctorsData = ({ id }) => {
       setTimeout(() => setErrorMsg(false), 3000);
     }
   };
-
-  const speciality = id;
-  const filteredDoctors = doctors.filter(
-    (doctor) => doctor.speciality === speciality,
-  );
 
   const selectedDate = useRef(null);
 
@@ -92,9 +94,11 @@ const DoctorsData = ({ id }) => {
               onClick={() => {
                 setAppointmentDetails({
                   appointmentType: "",
-                  doctorName: doctor.name,
+                  doctorName: doctor?.name,
                   patientNote: "",
                   appointmentDate: "",
+                  specialization: doctor?.speciality,
+                  doctorId: doctor?._id,
                 });
               }}
             >
