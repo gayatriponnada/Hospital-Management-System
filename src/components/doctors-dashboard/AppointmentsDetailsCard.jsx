@@ -1,98 +1,21 @@
-import React from "react";
-
-const appointmentsData = [
-  {
-    id: 1,
-    name: "Gayatri Ponnada",
-    avatar: "G", // fallback initial
-    avatarUrl: "", // optional image url
-    appointmentType: "General Checkup",
-    doctor: "Dr. Kumar",
-    date: "2025-01-18",
-    time: "09:30 AM",
-    status: "Scheduled",
-  },
-  {
-    id: 2,
-    name: "Ananya Sharma",
-    avatar: "A",
-    avatarUrl: "",
-    appointmentType: "Cardiology Consultation",
-    doctor: "Dr. Meera Rao",
-    date: "2025-01-18",
-    time: "10:15 AM",
-    status: "In Progress",
-  },
-  {
-    id: 3,
-    name: "Rahul Verma",
-    avatar: "R",
-    avatarUrl: "",
-    appointmentType: "Blood Test",
-    doctor: "Dr. Lab Services",
-    date: "2025-01-18",
-    time: "11:00 AM",
-    status: "Completed",
-  },
-  {
-    id: 4,
-    name: "Suresh Patel",
-    avatar: "S",
-    avatarUrl: "",
-    appointmentType: "Orthopedic Review",
-    doctor: "Dr. Ajay Singh",
-    date: "2025-01-18",
-    time: "12:30 PM",
-    status: "Scheduled",
-  },
-  {
-    id: 5,
-    name: "Neha Iyer",
-    avatar: "N",
-    avatarUrl: "",
-    appointmentType: "Dermatology Follow-up",
-    doctor: "Dr. Kavita Menon",
-    date: "2025-01-18",
-    time: "02:00 PM",
-    status: "Cancelled",
-  },
-  {
-    id: 5,
-    name: "Neha Iyer",
-    avatar: "N",
-    avatarUrl: "",
-    appointmentType: "Dermatology Follow-up",
-    doctor: "Dr. Kavita Menon",
-    date: "2025-01-18",
-    time: "02:00 PM",
-    status: "Cancelled",
-  },
-  {
-    id: 5,
-    name: "Neha Iyer",
-    avatar: "N",
-    avatarUrl: "",
-    appointmentType: "Dermatology Follow-up",
-    doctor: "Dr. Kavita Menon",
-    date: "2025-01-18",
-    time: "02:00 PM",
-    status: "Cancelled",
-  },
-	{
-    id: 5,
-    name: "Neha Iyer",
-    avatar: "N",
-    avatarUrl: "",
-    appointmentType: "Dermatology Follow-up",
-    doctor: "Dr. Kavita Menon",
-    date: "2025-01-18",
-    time: "02:00 PM",
-    status: "Cancelled",
-  },
-
-];
+import React, { useEffect, useState } from "react";
+import { supabase } from "../../config/supabaseClient";
 
 const AppointmentsDetailsCard = () => {
+  const [appointmentsData, setAppointmentsData] = useState([]);
+
+  useEffect(() => {
+    const fetchTodayAppointments = async () => {
+      const { data, error } = await supabase.from("BookAppointment").select();
+      if (data) {
+        setAppointmentsData(data);
+      } else {
+        console.log("error in getting the today appointments", error);
+      }
+    };
+    fetchTodayAppointments();
+  }, []);
+
   return (
     <div className="flex flex-col gap-2 w-full h-full">
       <div className="text-sm font-semibold text-secondary">
@@ -109,12 +32,16 @@ const AppointmentsDetailsCard = () => {
                 <div>
                   <div className="avatar avatar-placeholder">
                     <div className="bg-neutral text-neutral-content w-10 rounded-full">
-                      <span className="text-sm">{appointment.avatar}</span>
+                      <span className="text-sm">
+                        {appointment.patientName?.[0]}
+                      </span>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm font-normal ">{appointment.name}</div>
+                  <div className="text-sm font-normal ">
+                    {appointment.patientName}
+                  </div>
                   <div className="text-xs text-neutral group-hover:text-white font-normal ">
                     {appointment.appointmentType}
                   </div>

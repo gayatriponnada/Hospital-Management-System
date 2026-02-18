@@ -14,13 +14,6 @@ const DoctorsData = ({ id }) => {
     bookAppointmentDetails,
   );
 
-  // const [appointmentDetails, setAppointmentDetails] = useState({
-  //   appointmentType: "",
-  //   doctorName: "",
-  //   patientNote: "",
-  //   date: "",
-  // });
-
   const handleAppointment = async () => {
     const updatedAppointment = {
       ...appointmentDetails,
