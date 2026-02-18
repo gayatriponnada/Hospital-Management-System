@@ -26,7 +26,6 @@ const DoctorsData = ({ id }) => {
       patientId: profile?.id,
       patientName: profile?.fullname,
       patientGender: profile?.gender,
-      // specialization:
     };
 
     const { data, error } = await supabase

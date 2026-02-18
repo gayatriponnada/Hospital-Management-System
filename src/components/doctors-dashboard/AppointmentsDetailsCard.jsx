@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "../../config/supabaseClient";
+import { useNavigate } from "react-router-dom";
 
 const AppointmentsDetailsCard = () => {
+  const navigate = useNavigate();
+
   const [appointmentsData, setAppointmentsData] = useState([]);
 
   useEffect(() => {
@@ -15,6 +18,7 @@ const AppointmentsDetailsCard = () => {
     };
     fetchTodayAppointments();
   }, [appointmentsData]);
+  // console.log("id in app", id);
 
   return (
     <div className="flex flex-col gap-2 w-full h-full">
@@ -25,6 +29,9 @@ const AppointmentsDetailsCard = () => {
         <div className="flex flex-col gap-2 w-full">
           {appointmentsData.map((appointment) => (
             <div
+              onClick={() =>
+                navigate(`/doctor/patient/${appointment?.patientId}`)
+              }
               key={appointment.id}
               className=" group flex gap-2 justify-between items-center hover:bg-neutral-content hover:text-white p-2 rounded-lg cursor-pointer"
             >
